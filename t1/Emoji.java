@@ -10,8 +10,7 @@ public class Emoji
         //  System.err.printf("%s\n", new String(chars));
         System.out.println(n);
         //pos += Character.charCount(cp);
-      //  if (n >= 1536 && n<= 1791) System.out.println("persian");
-             //else
-              System.out.println("not-persian");
+       if (n >= 1536 && n<= 1791) System.out.println("persian");
+             else System.out.println("not-persian");
    }
 }
