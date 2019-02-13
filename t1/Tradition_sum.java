@@ -15,7 +15,7 @@ public class Tradition_sum
 
 		int ans = sum % all_fingers;
 		if (sum!=0 && ans == 0 ) ans = all_fingers;
-
+    //if (sum!=0 && ans == 0 ) ans = sum;
 		System.out.println(ans);
    }
 }
