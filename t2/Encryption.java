@@ -1,23 +1,13 @@
-
-import java.lang.*;
 public class Encryption{
 
   public static void main(String[] args){
-    java.util.Scanner scanner = new java.util.Scanner(System.in);
-    StringBuilder inp = new StringBuilder(scanner.next());
-
-    while (inp.length()>=1){
-      int len = inp.length();
-      int index = (len+1)/2 -1 ;
+    StringBuilder inp = new StringBuilder(new java.util.Scanner(System.in).next());
+    while (inp.length()>0){
+      int len = inp.length() , index = (len+1)/2 -1 ;
       System.out.print(inp.charAt(index));
       inp.deleteCharAt(index);
-      if((len)%2==0){
+      if((len)%2==0) // zoj boude hala fard shode!
         inp = inp.reverse();
-      }
-
     }
-
   }
-
-
 }
