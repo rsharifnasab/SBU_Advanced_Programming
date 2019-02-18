@@ -10,6 +10,7 @@ public class Operation{
     }
     return ans;
   }
+
   public static void main(String[] args){
     StringBuilder inp = new StringBuilder(new java.util.Scanner(System.in).next());
     inp = cleaner(inp);
@@ -18,8 +19,7 @@ public class Operation{
       for (int j =i;j<=len;j++ ) {
         String mainSubStr = inp.substring(i,j);
         String revSubStr = new StringBuilder(inp.substring(i,j)).reverse().toString();
-        boolean pal = mainSubStr.equals(revSubStr);
-        if(pal)
+        if(mainSubStr.equals(revSubStr))
           maxPal = (maxPal < j-i)? j-i : maxPal;
       }
     }
