@@ -1,4 +1,4 @@
-public class Table{
+public class TableO{
 
   public static int  m,n;
   public static char [][] s;
@@ -21,23 +21,22 @@ public class Table{
 
     int tedad = 0;
 
-    for(int l=0; l<m;l++){
-      for (int begin=0; begin<n; end++) {
-        for (int end=begin+2; end<=n; end++) {
-
-
-
-          tedad+=(wordCheckS(i,j,l))?1:0;
+    sat:for(int satr=0; satr<m;satr++){
+      beg:for (int begin=0; begin<n; begin++) {
+        end:for (int end=begin+1; end<n; end++) {
+          if(s[satr][end]==s[satr][end-1]) continue beg;
+          if(isV[satr][end] && isV[satr][end-1] ) continue beg;
+          tedad+=1;
         }
       }
     }
 
-    sot:for(int l=0; l<n;l++){
-      beg:for (int i=0; i<m; i++ ) {
-        boolean last = true
-        end:for (int j=i+2; j<=m; j++) {
-          // continue to outer !
-          tedad+=(wordCheck2(i,j,l))?1:0;
+    sot:for(int sot=0; sot<n;sot++){ // sot
+      beg:for (int begin=0; begin<m; begin++ ) {
+        end:for (int end=begin+1; end<m; end++) {
+            if( s[end][sot]==s[end-1][sot]) continue beg;
+            if( isV[end][sot] && isV[end-1][sot] ) continue beg;
+            tedad+=1;
         }
       }
     }
