@@ -22,16 +22,21 @@ public class Table{
     int tedad = 0;
 
     for(int l=0; l<m;l++){
-      for (int i=0; i<n; i++ ) {
-        for (int j=i+2; j<=n; j++) {
+      for (int begin=0; begin<n; end++) {
+        for (int end=begin+2; end<=n; end++) {
+
+
+
           tedad+=(wordCheckS(i,j,l))?1:0;
         }
       }
     }
 
-    for(int l=0; l<n;l++){
-      for (int i=0; i<m; i++ ) {
-        for (int j=i+2; j<=m; j++) {
+    sot:for(int l=0; l<n;l++){
+      beg:for (int i=0; i<m; i++ ) {
+        boolean last = true
+        end:for (int j=i+2; j<=m; j++) {
+          // continue to outer !
           tedad+=(wordCheck2(i,j,l))?1:0;
         }
       }
