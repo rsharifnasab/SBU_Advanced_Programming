@@ -5,6 +5,7 @@ public class TableO{
   public static boolean [][] isV;
 
   public static void main(String[] args){
+
     java.util.Scanner sc = new java.util.Scanner(System.in);
     m = sc.nextInt();
     n = sc.nextInt();
@@ -50,28 +51,6 @@ public class TableO{
       if (c==i) return true;
     return false;
   }
-
-  public static boolean wordCheckS(int  begin,int  end, int  satr){
-    int  len =  end - begin;
-    for (int i =0; i+1<len;i++ ){
-        if(s[satr][i+begin]==s[satr][i+1+begin]) return false;
-        if(isV[satr][i+begin] && isV[satr][i+1+begin] ) return false;
-    }
-      return true;
-  }
-
-
-
-  public static boolean wordCheck2(int  begin,int  end, int  sot){
-    int  len =  end - begin;
-    for (int i =0; i+1<len;i++ ){
-        if( s[i+begin][sot]==s[i+1+begin][sot]) return false;
-        if( isV[i+begin][sot] && isV[i+1+begin][sot] ) return false;
-    }
-    return true;
-  }
-}
-
 
 /*
 
