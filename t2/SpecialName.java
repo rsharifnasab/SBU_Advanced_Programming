@@ -15,11 +15,7 @@ class SpecialName {
 
     public static void main(String[] args) {
 
-        java.util.Scanner sc = new java.util.Scanner(System.in);
-        StringBuilder s = new StringBuilder(sc.nextLine());
-        cleaner(s);
-        //System.out.println(s);
-        java.util.Scanner inp= new java.util.Scanner(s.toString());
+        java.util.Scanner inp= new java.util.Scanner(System.in);
 
         String pre,t = inp.next();
         while(inp.hasNext()){
