@@ -1,7 +1,7 @@
 class SpecialName2 {
 
 
-    public static String cleaner(String main,String order) {
+    public static String cleaner(String main) {
       StringBuilder s = new StringBuilder(main);
        for (int i=0;i<s.length();i++) {
          char c = s.charAt(i);
@@ -27,8 +27,7 @@ class SpecialName2 {
          i--;
        }
        s = s.reverse();
-
-       if(s.length()>=2 && order == "print") System.out.println(s);
+       
        return s.toString();
     }
 
@@ -45,13 +44,11 @@ class SpecialName2 {
         String[] all = inp.nextLine().split(" ");
 
         for(int i=1;i<all.length;i++){
-          String thiis = cleaner(all[i],"return");
-          //String last = cleaner(all[i-1],"return");
+          String thiis = cleaner(all[i]);
           if(!isUpperCase(thiis.charAt(0))) continue;
           char ch = all[i-1].charAt(all[i-1].length()-1);
           if(ch=='!' || ch=='.') continue;
-          cleaner(all[i],"print");
-
+          if (thiis.length()>1) System.out.println(thiis);
         }
     }
 }
