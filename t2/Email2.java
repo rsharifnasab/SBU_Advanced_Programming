@@ -55,7 +55,12 @@ public class Email2{
       String[] others = list[1].split(" ");
       for (String s :others ) {
         for (int i=0;i+1<s.length();i++ ) {
-          
+          for (int j=i;j<s.length();j++ ) {
+            if () {
+              
+            }
+
+          }
         }
         if(temp.equals(mail)) {
           counter++;
