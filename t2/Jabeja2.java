@@ -1,29 +1,39 @@
-public class Jabeja {
+public class Jabeja2 {
+
+    public static String bishMaker(int t,char c){
+      StringBuilder str = new StringBuilder();
+      for (int i=0;i<t ; i++) {
+        str.append(c);
+      }
+      return str.toString();
+    }
 
     public static void main(String[] args) {
 
         java.util.Scanner sc = new java.util.Scanner(System.in);
         StringBuilder s = new StringBuilder(sc.next());
-        String u = sc.next();
-        String v = sc.next();
+        final String u = sc.next();
+        final String v = sc.next();
+        int u_len = u.length();
+        int v_len = v.length();
+        final int bish = (u_len>v_len)? u_len : v_len;
+
         int v_aval = s.indexOf(v);
+        if(v_aval != -1)
+          s.replace(v_aval, ( v_aval + v.length() ) , bishMaker(bish,'-'));
+
         int u_last = s.lastIndexOf(u);
-        if (v_aval != -1 && u_last != -1) {
-            s.replace(v_aval, (v_aval + v.length()) , u);
-            //s.replace(u_last, (u_last + u.length()) , v);
-            s.replace(u_last + (u.length() - v.length()), u_last + (u.length() - v.length()) + u.length(), v);
+        if (u_last != -1)
+            s.replace(u_last , ( u_last + u.length() ) , bishMaker(bish,'#'));
 
-        // nedd TODO work!
-        }
+        v_aval = s.indexOf(Character.toString('-'));
+        if(v_aval != -1)
+          s.replace(v_aval, (v_aval + bish) , u);
 
-        if (v_aval == -1 && u_last != -1) {
-            s.replace(u_last, u_last + u.length(), v);
-        }
+        u_last = s.indexOf(Character.toString('#'));
+        if (u_last != -1)
+            s.replace(u_last ,(u_last + bish) , v);
 
-        if (u_last == -1 && v_aval != -1) {
-            s.replace(v_aval, v_aval + v.length(), u);
-        }
-        // if none of the above : s is main s!
         System.out.println(s);
     }
 }
