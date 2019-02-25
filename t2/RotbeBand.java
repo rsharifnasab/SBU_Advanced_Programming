@@ -1,13 +1,22 @@
-public class Encryption{
+public class RotbeBand{
+
+  public static int[] rank(String word, int prefix, int postfix, String[] documents){
+    int[] a = {1,2};
+    return a;
+  }
 
   public static void main(String[] args){
-    StringBuilder inp = new StringBuilder(new java.util.Scanner(System.in).next());
-    while (inp.length()>0){
-      int len = inp.length() , index = (len+1)/2 -1 ;
-      System.out.print(inp.charAt(index));
-      inp.deleteCharAt(index);
-      if((len)%2==0) // zoj boude hala fard shode!
-        inp = inp.reverse();
+    java.util.Scanner sc = new java.util.Scanner(System.in);
+    int n = sc.nextInt();
+    String word = sc.next();
+    int p = sc.nextInt();
+    int q = sc.nextInt();
+    String[] documents = new String[n];
+    //list[1].split("(,|:| )+");
+    for (int i = 0;i<n ;i++ ) {
+      documents[i] = sc.nextLine();
     }
+    int [] ans = rank(word,p,q,documents);
+    System.out.println(java.util.Arrays.toString(ans));
   }
 }
