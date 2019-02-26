@@ -11,10 +11,11 @@ int main()
     sum+=arr[i];
   }
 
-
+  const int max = sum -1;
   int ok = false;
 
-  for (int had =sum-1; had > 0; had--){
+  for (int had = max-1; had > 0; had--){
+  //  std::cerr << " had is " << had << std::endl;
     int tSum = 0;
     for(int i = 0; i < n ; i++){
       tSum += arr[i];
