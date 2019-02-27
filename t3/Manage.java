@@ -6,9 +6,7 @@ public class Manage{
   public static void hire(){
     String name = sc.next();
     String degree = sc.next();
-    db[last] = new Emplo(name,degree);
-    last++; //TODO
-
+    db[last++] = new Emplo(name,degree);
   }
 
 
@@ -23,7 +21,7 @@ public class Manage{
     int ind = name2index(name);
     int quan = sc.nextInt();
     if(!db[ind].get(quan))
-    System.out.println("NotEnoughMoney");
+      System.out.println("NotEnoughMoney");
   }
 
   public static void loan(){
@@ -47,7 +45,7 @@ public class Manage{
     boolean cermony = false;
     for (int i = 0;i < last ;i++ )
       cermony = (db[i].promote() | cermony);
-    if(cermony) cermony();
+    if(cermony) cermony(); //TODO
   }
 
 
@@ -59,7 +57,7 @@ public class Manage{
 
   public static void cermony(){
     for (int i = 0;i < last ;i++ )
-      db[i].revam();
+      db[i].revam();//TODO
   }
 
   public static void report(){
@@ -72,7 +70,7 @@ public class Manage{
     for (int i = 0;i < 300 ;  i++ ) {
       if(db[i].getName().equals(name)) return i;
     }
-    return -1; //TODO
+    return -1; //raise error
   }
 
   public static void main(String[] args) {
@@ -88,16 +86,13 @@ public class Manage{
       if(order.equals("promote")) promote();
       if(order.equals("regress")) regress();
       if(order.equals("report")) report();
-      //System.out.println(db[0].getMoney());
     }while(sc.hasNext());
   }
 
 }
-// still god enough
-
 
 class Emplo{
-  public String degree;
+  private String degree;
   private String name;
   private boolean Special;
   private int money;
@@ -115,7 +110,7 @@ class Emplo{
     this.degree = degree;
   }
 
-  public String getName(){ return name;}
+  public String getName(){ return name; }
 
   public int getSalary(){
     if(degree.equals("Worker")) return 100;
@@ -125,12 +120,10 @@ class Emplo{
     return 0;
   }
 
-  public void pay(){
-    money = money + getSalary();
-  }
+  public void pay(){ money += getSalary(); }
 
   public boolean promote(){
-    boolean cermony = false;
+    boolean cermony = false; //TODO
     if(money <= 2* getSalary())return cermony;
     if(degree.equals("Worker")) degree = "Foreman";
     else if(degree.equals("Foreman")) degree = "Supervisor";
@@ -148,14 +141,14 @@ class Emplo{
     if(Special) System.out.print("special ");
     System.out.print(getName());
     if(!fired)System.out.print("("+degree+")"); // TODO
-    System.out.print(" "+getMoney()+" ");
+    System.out.print(" "+getMoney());
     System.out.println();
   }
 
 
   public void regress(){
     if(money >=  (getSalary() / 2) )return; // TODO
-    if(degree.equals("Worker")) fired = true;//degree = "Fired";
+    if(degree.equals("Worker")) fired = true;//or degree = "Fired";
     else if(degree.equals("Foreman")) degree = "Worker";
     else if(degree.equals("Supervisor")) degree = "Foreman";
     else if(degree.equals( "Leader")) degree = "Supervisor";
@@ -171,9 +164,7 @@ class Emplo{
   }
 
 
-  public void revam(){
-    if (Special) vam = false;
-  }
+  public void revam(){ if (Special) vam = false; }
 
   public boolean get(int quan){
     if(money > quan){
@@ -183,9 +174,6 @@ class Emplo{
     return false;
   }
 
-  public boolean special(){ return Special;}
   public void makeSpecial(){ Special = true;}
-  public int getMoney(){
-    return money;
-  }
+  public int getMoney(){ return money; }
 }

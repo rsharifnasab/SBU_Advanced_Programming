@@ -1,0 +1,24 @@
+ali(Foreman) 400
+sara(Foreman) 0
+bahar(Supervisor) 0
+rejected
+ali(Foreman) 400
+special sara(Foreman) 0
+bahar(Supervisor) 0
+accepted
+rejected
+ali(Foreman) 400
+special sara(Supervisor) 900
+special bahar(Leader) 2100
+ali(Foreman) 400
+special sara(Supervisor) 900
+accepted
+mina(Worker) 0
+ali(Foreman) 400
+special sara(Supervisor) 3000
+NotEnoughMoney
+mina(Worker) 0
+ali(Foreman) 200
+special sara(Supervisor) 3000
+ali(Foreman) 200
+special sara(Supervisor) 3000
