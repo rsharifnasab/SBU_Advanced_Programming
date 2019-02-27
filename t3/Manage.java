@@ -53,13 +53,13 @@ public class Manage{
 
   public static void regress(){
     for (int i = 0;i < last ;i++ )
-    db[i].regress();
+      db[i].regress();
   }
 
 
   public static void cermony(){
     for (int i = 0;i < last ;i++ )
-    db[i].revam();
+      db[i].revam();
   }
 
   public static void report(){
@@ -143,6 +143,7 @@ class Emplo{
   }
 
   public void report(String degree){
+    if (retired || fired ) return;
     if (this.degree.equals(degree) == false) return;
     if(Special) System.out.print("special ");
     System.out.print(getName());
@@ -153,7 +154,7 @@ class Emplo{
 
 
   public void regress(){
-    if(money >=  getSalary() / 2 )return; // TODO
+    if(money >=  (getSalary() / 2) )return; // TODO
     if(degree.equals("Worker")) fired = true;//degree = "Fired";
     else if(degree.equals("Foreman")) degree = "Worker";
     else if(degree.equals("Supervisor")) degree = "Foreman";
@@ -163,6 +164,7 @@ class Emplo{
 
   public boolean loan(){
     if(vam) return false;
+    if(!Special) return false;
     vam = true;
     money= money + getSalary()*3;
     return true;
