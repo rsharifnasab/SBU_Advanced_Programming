@@ -6,7 +6,8 @@ public class Manage{
   public static void hire(){
     String name = sc.next();
     String degree = sc.next();
-    db[last++] = new Emplo(name,degree);
+    db[last] = new Emplo(name,degree);
+    last++; //TODO
   }
 
 
@@ -150,9 +151,9 @@ public class Manage{
       public void report(String degree){
         if (this.degree.equals(degree) == false) return;
         if(Special) System.out.print("special ");
-        System.out.print(getName()+" ");
-        if(!fired)System.out.print("("+degree+") "); // TODO
-        System.out.print(getMoney()+" ");
+        System.out.print(getName());
+        if(!fired)System.out.print("("+degree+")"); // TODO
+        System.out.print(" "+getMoney()+" ");
         System.out.println();
       }
 
