@@ -1,8 +1,8 @@
 public class Manage{
 
   public static Emplo[] db = new Emplo[300];
-  public static int last =0;
   public static java.util.Scanner sc ;
+  public static int last =0;
   public static void hire(){
     String name = sc.next();
     String degree = sc.next();
@@ -44,7 +44,7 @@ public class Manage{
   public static void promote(){
     boolean cermony = false;
     for (int i = 0;i < last ;i++ )
-      cermony = (db[i].promote() | cermony);
+      if(db[i].promote()) cermony= true;
     if(cermony) cermony(); //TODO
   }
 
@@ -164,7 +164,9 @@ class Emplo{
   }
 
 
-  public void revam(){ if (Special) vam = false; }
+  public void revam(){
+    if (Special) vam = false;  //TODO
+  }
 
   public boolean get(int quan){
     if(money > quan){
