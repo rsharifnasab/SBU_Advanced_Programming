@@ -1,0 +1,13 @@
+hire axxrsomtgb Supervisor
+regress
+hire axbmtpfrt Supervisor
+hire shsa Supervisor
+special shsa
+hire l Foreman
+promote
+report Foreman
+report Supervisor
+get l 399
+special l
+get l 577
+regress

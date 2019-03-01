@@ -1,0 +1,19 @@
+hire rlmwyeo Worker
+promote
+special rlmwyeo
+pay rlmwyeo
+loan rlmwyeo
+loan rlmwyeo
+report Fired
+report Leader
+special rlmwyeo
+loan rlmwyeo
+report Retired
+get rlmwyeo 210
+get rlmwyeo 690
+get rlmwyeo 335
+special rlmwyeo
+special rlmwyeo
+report Fired
+report Supervisor
+loan rlmwyeo

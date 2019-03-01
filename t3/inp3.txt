@@ -1,0 +1,17 @@
+hire qi Supervisor
+loan qi
+report Foreman
+hire fdhdtk Supervisor
+get qi 154
+special fdhdtk
+get qi 264
+pay fdhdtk
+hire eenyh Supervisor
+get qi 937
+hire hfralgfr Foreman
+pay fdhdtk
+promote
+report Foreman
+special hfralgfr
+report Foreman
+pay fdhdtk

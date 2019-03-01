@@ -113,6 +113,7 @@ class Emplo{
   public String getName(){ return name; }
 
   public int getSalary(){
+    if (retired || fired) return 0;
     if(degree.equals("Worker")) return 100;
     if(degree.equals("Foreman")) return 300;
     if(degree.equals("Supervisor")) return 700;
@@ -124,6 +125,7 @@ class Emplo{
 
   public boolean promote(){
     boolean cermony = false; //TODO
+    if (fired || retired) return cermony;
     if(money <= 2* getSalary())return cermony;
     if(degree.equals("Worker")) degree = "Foreman";
     else if(degree.equals("Foreman")) degree = "Supervisor";
@@ -147,6 +149,7 @@ class Emplo{
 
 
   public void regress(){
+    if (retired || fired) return;
     if(money >=  (getSalary() / 2) )return; // TODO
     if(degree.equals("Worker")) fired = true;//or degree = "Fired";
     else if(degree.equals("Foreman")) degree = "Worker";
@@ -165,6 +168,7 @@ class Emplo{
 
 
   public void revam(){
+    if (fired || retired) return;
     if (Special) vam = false;  //TODO
   }
 
