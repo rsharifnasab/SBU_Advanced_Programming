@@ -19,7 +19,7 @@ public class Manage{
   public static void get(){
     String name = sc.next();
     int ind = name2index(name);
-    int quan = sc.nextInt();
+    long quan = sc.nextInt();
     if(!db[ind].get(quan))
       System.out.println("NotEnoughMoney");
   }
@@ -95,7 +95,7 @@ class Emplo{
   private String degree;
   private String name;
   private boolean Special;
-  private int money;
+  private long money;
   private boolean vam;
   private boolean fired;
   private boolean retired;
@@ -112,7 +112,7 @@ class Emplo{
 
   public String getName(){ return name; }
 
-  public int getSalary(){
+  public long getSalary(){
     if (retired || fired) return 0;
     if(degree.equals("Worker")) return 100;
     if(degree.equals("Foreman")) return 300;
@@ -172,8 +172,8 @@ class Emplo{
     if (Special) vam = false;  //TODO
   }
 
-  public boolean get(int quan){
-    if(money > quan){
+  public boolean get(long quan){
+    if(money >= quan){
       money-=quan;
       return true;
     }
@@ -181,5 +181,5 @@ class Emplo{
   }
 
   public void makeSpecial(){ Special = true;}
-  public int getMoney(){ return money; }
+  public long getMoney(){ return money; }
 }
