@@ -1,17 +1,47 @@
-hire qi Supervisor
-loan qi
+hire A Worker
+report Leader
+special A
+loan A
+get A 379
+loan A
+report Fired
+get A 114
+get A 143
+regress
+hire B Leader
+pay B
+report Retired
+report Leader
+loan B
+loan B
 report Foreman
-hire fdhdtk Supervisor
-get qi 154
-special fdhdtk
-get qi 264
-pay fdhdtk
-hire eenyh Supervisor
-get qi 937
-hire hfralgfr Foreman
-pay fdhdtk
+get A 34
 promote
+loan B
+get A 818
+regress
+special B
+loan B
+report Fired
+pay B
+special B
+report Leader
+loan B
+get A 629
+regress
+pay B
+promote
+report Supervisor
+report Fired
 report Foreman
-special hfralgfr
+regress
+get B 852
 report Foreman
-pay fdhdtk
+regress
+get A 630
+regress
+report Retired
+report Leader
+get B 602
+promote
+get A 509

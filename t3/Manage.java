@@ -1,8 +1,8 @@
 public class Manage{
 
-  public static Emplo[] db = new Emplo[300];
+  public static Emplo[] db = new Emplo[400];
   public static java.util.Scanner sc ;
-  public static int last =0;
+  public static int last = 0;
   public static void hire(){
     String name = sc.next();
     String degree = sc.next();
@@ -20,14 +20,13 @@ public class Manage{
     String name = sc.next();
     int ind = name2index(name);
     long quan = sc.nextInt();
-    if(!db[ind].get(quan))
+    if(db[ind].get(quan) == false)
       System.out.println("NotEnoughMoney");
   }
 
   public static void loan(){
     String name = sc.next();
     int ind = name2index(name);
-
     if(db[ind].loan())
       System.out.println("accepted");
     else
@@ -40,20 +39,18 @@ public class Manage{
     db[ind].makeSpecial();
   }
 
-
   public static void promote(){
     boolean cermony = false;
     for (int i = 0;i < last ;i++ )
-      if(db[i].promote()) cermony= true;
+      if(db[i].promote()) cermony = true;
     if(cermony) cermony(); //TODO
   }
 
 
   public static void regress(){
-    for (int i = 0;i < last ;i++ )
+    for (int i = 0; i < last; i++ )
       db[i].regress();
   }
-
 
   public static void cermony(){
     for (int i = 0;i < last ;i++ )
@@ -63,11 +60,11 @@ public class Manage{
   public static void report(){
     String degree = sc.next();
     for (int i = 0;i < last ;i++ )
-    db[i].report(degree);
+      db[i].report(degree);
   }
 
   public static int name2index(String name){
-    for (int i = 0;i < 300 ;  i++ ) {
+    for (int i = 0;i < 400 ; i++ ) {
       if(db[i].getName().equals(name)) return i;
     }
     return -1; //raise error
@@ -75,7 +72,6 @@ public class Manage{
 
   public static void main(String[] args) {
     sc = new java.util.Scanner(System.in);
-
     do{
       String order = sc.next();
       if(order.equals("hire") ) hire();
@@ -96,7 +92,7 @@ class Emplo{
   private String name;
   private boolean Special;
   private long money;
-  private boolean vam;
+  private boolean vamed;
   private boolean fired;
   private boolean retired;
 
@@ -105,7 +101,7 @@ class Emplo{
     Special = false;
     fired = false;
     retired = false;
-    vam = false;
+    vamed = false;
     this.name = name;
     this.degree = degree;
   }
@@ -121,28 +117,41 @@ class Emplo{
     return 0;
   }
 
-  public void pay(){ money += getSalary(); }
+  public void pay(){
+      if (retired || fired) return;
+      money += getSalary();
+   }
 
   public boolean promote(){
-    boolean cermony = false; //TODO
-    if (fired || retired) return cermony;
-    if(money <= 2* getSalary())return cermony;
+    if (fired || retired) return false;
+    if(money <= 2* getSalary())return false;
     if(degree.equals("Worker")) degree = "Foreman";
     else if(degree.equals("Foreman")) degree = "Supervisor";
     else if(degree.equals("Supervisor")) degree = "Leader";
     else if(degree.equals("Leader")) {
-      retired = true;
-      if(Special) cermony = true;
+      this.retired = true;
+      if(Special) return true;
+      return false;
     }
-    return cermony;
+    return false;
   }
 
   public void report(String degree){
-    if (retired || fired ) return;
-    if (this.degree.equals(degree) == false) return;
+    if ( (fired && degree.equals("Fired")) || (retired & degree.equals("Retired")) )
+    {
+      if(Special) System.out.print("special ");
+      System.out.print(getName());
+      if (fired) System.out.print("(Fired)");
+      else if (retired) System.out.print("(Retired)");
+      System.out.print(" "+getMoney());
+      System.out.println();
+      return; //end of reporting fired and retired
+    }
+    if(this.degree.equals(degree) == false) return;
+    if(retired || fired) return;
     if(Special) System.out.print("special ");
     System.out.print(getName());
-    if(!fired)System.out.print("("+degree+")"); // TODO
+    System.out.print("("+degree+")");
     System.out.print(" "+getMoney());
     System.out.println();
   }
@@ -159,21 +168,22 @@ class Emplo{
 
 
   public boolean loan(){
-    if(vam) return false;
+    if(retired || retired) return false;
+    if(vamed) return false;
     if(!Special) return false;
-    vam = true;
-    money= money + getSalary()*3;
+    vamed = true;
+    money = money + getSalary()*3;
     return true;
   }
 
 
   public void revam(){
     if (fired || retired) return;
-    if (Special) vam = false;  //TODO
+    if (Special) vamed = false;  //TODO
   }
 
   public boolean get(long quan){
-    if(money >= quan){
+    if(money - quan >= 0){
       money-=quan;
       return true;
     }

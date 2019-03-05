@@ -1,19 +1,47 @@
-hire rlmwyeo Worker
-promote
-special rlmwyeo
-pay rlmwyeo
-loan rlmwyeo
-loan rlmwyeo
-report Fired
-report Leader
-special rlmwyeo
-loan rlmwyeo
+hire Amin Worker
 report Retired
-get rlmwyeo 210
-get rlmwyeo 690
-get rlmwyeo 335
-special rlmwyeo
-special rlmwyeo
+report Foreman
+regress
+get Amin 444
+get Amin 325
+report Foreman
+get Amin 916
+get Amin 122
+hire Reza Leader
+loan Reza
+report Leader
+get Amin 383
+pay Reza
+report Leader
+hire Ahmad Leader
+special Ahmad
+regress
+get Amin 747
+hire John Supervisor
+special Ahmad
+report Foreman
+get Ahmad 8
 report Fired
-report Supervisor
-loan rlmwyeo
+special Reza
+loan Ahmad
+hire Mohammad Worker
+regress
+special John
+pay Ahmad
+special Ahmad
+hire Alireza Leader
+get Reza 632
+report Fired
+report Retired
+special Reza
+special John
+hire Amir Worker
+get John 735
+special Amir
+hire Lyon Leader
+report Leader
+promote
+pay Alireza
+get Amin 723
+loan Ahmad
+regress
