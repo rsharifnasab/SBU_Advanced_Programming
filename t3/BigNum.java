@@ -97,12 +97,11 @@ public class BigNum{
   private BigNum add2plus(BigNum a , BigNum b){
     BigNum ans = new BigNum();
     byte carr = 0;
-    for (int i = 0; i+1<TR; i++ ) {
+    for (int i = 0; i<TR; i++ ) {
       byte temp = (byte) ( a.num[i] + b.num[i] + carr);
       ans.num[i] = (byte) (temp%10);
       carr = (byte) (temp/10);
     }
-    num[TR-1] = carr;
     return ans;
   }
 
@@ -118,11 +117,13 @@ public class BigNum{
   private BigNum add2O(BigNum a , BigNum b){
     // a is positive , b is negative
     BigNum c = new BigNum(b.toString());
+    System.err.println("bigger is: " + c);
+    boolean cMinusBkp = c.minus;
     c.minus = false;
     BigNum []  s = sort2(a,c);
     BigNum ans = new BigNum();
     byte carr = 0;
-    for (int i = 0; i+1<TR; i++ ) {
+    for (int i = 0; i<TR; i++ ) {
       byte temp = (byte) ( s[0].num[i] - s[1].num[i] + carr);
       if(temp < 0){
         temp+=10;
@@ -130,7 +131,7 @@ public class BigNum{
       } else carr = 0;
       ans.num[i] = (byte) (temp);
     }
-    num[TR-1] = carr;
+    //ans.minus = cMinusBkp;
     return ans;
   }
 
@@ -151,19 +152,29 @@ public class BigNum{
 
 
   public static void main(String[] args) {
-    BigNum bigNum1 = new BigNum("-12499595");
-    BigNum bigNum2 = new BigNum("-459591956");
+    BigNum bigNum1 = new BigNum("-143");
+    BigNum bigNum2 = new BigNum("207");
     System.out.println(bigNum1.add(bigNum2));
     System.out.println();
+    System.out.println(bigNum1.subtract(bigNum2));
+    System.out.println();
+    System.out.println(bigNum1);
+    System.out.println(bigNum2);
+    System.out.println();
 
-    bigNum1 = new BigNum("123");
-    bigNum2 = new BigNum("123");
+    bigNum1 = new BigNum("+1234567");
+    bigNum2 = new BigNum("-987654");
     System.out.println(bigNum1.add(bigNum2));
+    System.out.println();
+    System.out.println(bigNum1.subtract(bigNum2));
+    System.out.println(bigNum1);
+    System.out.println(bigNum2);
     System.out.println();
 
     bigNum1 = new BigNum("-123");
-    bigNum2 = new BigNum("123");
+    bigNum2 = new BigNum("124");
     System.out.println(bigNum1.add(bigNum2));
-  }
+
+}
 
 }
