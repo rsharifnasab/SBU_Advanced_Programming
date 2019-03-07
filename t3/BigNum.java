@@ -1,7 +1,7 @@
 public class BigNum{
   private byte[] num;
   private boolean minus;
-  private static final int TR = 10; //TODO
+  private static final int TR = 5000; //TODO
 
   private String signHandle(String handle){
     char signChar = handle.charAt(0);
@@ -59,7 +59,7 @@ public class BigNum{
     for (int i = 0; i < tedad; i++) {
       ans = num[i] + ans;
     }
-    if (isMinus()) ans = "-" + ans;
+    if (isMinus() && !isZero()) ans = "-" + ans;
     return ans;
   }
 
@@ -94,24 +94,28 @@ public class BigNum{
     return ans;
   }
 
-
-
-    public BigNum[] sort2IgnoreMinus ( BigNum a, BigNum b){
-      BigNum at = new BigNum(a.toString());
-      at.minus = false;
-      BigNum bt = new BigNum(b.toString());
-      bt.minus = false;
-      BigNum[] ans = new BigNum[2];
-      if(at.bt(bt)){
-        ans[0] = at;
-        ans[1] = bt;
-      }
-      else{
-        ans[0] = bt;
-        ans[1] = at;
-      }
-      return ans;
+  public boolean bt(BigNum other,boolean ignore){ //check if (abs)this is bigger than other(true) or not(false)
+    if(!ignore) bt(other);
+    for (int i=TR -1; i>=0 ;i-- ) {
+      if(this.num[i] > other.num[i] ) return !this.isMinus();
+      if(this.num[i] < other.num[i] ) return this.isMinus();
     }
+    return false;
+  }
+
+
+  public BigNum[] sort2IgnoreMinus ( BigNum a, BigNum b){
+    BigNum[] ans = new BigNum[2];
+    if(a.bt(b,false)){
+      ans[0] = a;
+      ans[1] = b;
+    }
+    else{
+      ans[0] = b;
+      ans[1] = a;
+    }
+    return ans;
+  }
 
   private BigNum add2plus(BigNum a , BigNum b){
     BigNum ans = new BigNum();
@@ -166,12 +170,60 @@ public class BigNum{
   }
 
 
+  public BigNum multiply(BigNum value){
+    BigNum ans = new BigNum();
+
+    for (int i = 0; i<TR/2; i++ ) {
+      BigNum row = new BigNum();
+      byte carr = (byte) 0;
+      for (int j = 0; j<TR/2; j++ ) {
+        byte temp = (byte) ( value.num[i] * this.num[j] + carr);
+        row.num[i+j] = (byte) (temp%10); //TODO
+        carr = (byte) (temp/10);
+      }
+      ans = ans.add(row);
+    }
+    ans.minus = (this.isMinus() ^ value.isMinus());
+    return ans;
+  }
+
+  public BigNum remainder(BigNum value){
+    BigNum ans = new BigNum();
+
+    return ans;
+  }
+
   public static void main(String[] args) {
+    do{
+      BigNum bigNum1 = new BigNum("-123");
+      BigNum bigNum2 = new BigNum("456");
+      System.out.println(bigNum1.multiply(bigNum2));
+      System.out.println();
+    }while(false);
+
 
     BigNum bigNum1 = new BigNum("123");
-    BigNum bigNum2 = new BigNum("-456");
+    BigNum bigNum2 = new BigNum("456");
     System.out.println(bigNum1.add(bigNum2));
-  
-}
+    System.out.println(bigNum1.multiply(bigNum2));
+    System.out.println(bigNum1.subtract(bigNum2));
+    System.out.println(bigNum2.remainder(bigNum1));
+    System.out.println(bigNum1);
+    System.out.println(bigNum2);
+    System.out.println();
+
+    bigNum1 = new BigNum("+1234567");
+    bigNum2 = new BigNum("-987654");
+    System.out.println(bigNum1.add(bigNum2));
+    System.out.println(bigNum1.multiply(bigNum2));
+    System.out.println(bigNum1.subtract(bigNum2));
+    System.out.println(bigNum1);
+    System.out.println(bigNum2);
+    System.out.println();
+
+    bigNum1 = new BigNum("-123");
+    bigNum2 = new BigNum("123");
+    System.out.println(bigNum1.add(bigNum2));
+  }
 
 }
