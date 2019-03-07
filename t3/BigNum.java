@@ -35,11 +35,12 @@ public class BigNum{
     value = signHandle(value);
     minus = isMinus(value);
     num = new byte [TR];
-    for (int i = value.length()-1; i >0 ; i-- ) {
-      num[i-1] = (byte) (value.charAt(i) - '0');
-      System.err.println("i-1 :" + (i-1) + " num[i-1] :" + num[i-1]);
+    for (int i = 1; i < value.length(); i++ ) {
+      num[value.length() - (i+1) ] = (byte) (value.charAt(i) - '0');
+      //System.err.println("i-1 :" + (i-1) + " num[i-1] :" + num[i-1]);
     }
   }
+
 
   public BigNum(){
     this( (byte) 0);
@@ -54,11 +55,11 @@ public class BigNum{
 
   public String toString(){
     String ans = "";
-    if (isMinus()) ans = "-";
     int tedad = tedadRagham();
     for (int i = 0; i < tedad; i++) {
-      ans = ans + num[i];
+      ans = num[i] + ans;
     }
+    if (isMinus()) ans = "-" + ans;
     return ans;
   }
 
@@ -100,7 +101,6 @@ public class BigNum{
       byte temp = (byte) ( a.num[i] + b.num[i] + carr);
       ans.num[i] = (byte) (temp%10);
       carr = (byte) (temp/10);
-      System.err.println(ans.num[i] + " = " + a.num[i] + " + " + b.num[i] + " + (" + carr + ")");
     }
     num[TR-1] = carr;
     return ans;
@@ -110,16 +110,37 @@ public class BigNum{
     a.minus =  false;
     b.minus =  false;
     BigNum ans = add2plus(a,b);
-    ans.minus = false;
+    ans.minus = true;
     return ans;
   }
+
+
+  private BigNum add2O(BigNum a , BigNum b){
+    // a is positive , b is negative
+    BigNum c = new BigNum(b.toString());
+    c.minus = false;
+    BigNum []  s = sort2(a,c);
+    BigNum ans = new BigNum();
+    byte carr = 0;
+    for (int i = 0; i+1<TR; i++ ) {
+      byte temp = (byte) ( s[0].num[i] - s[1].num[i] + carr);
+      if(temp < 0){
+        temp+=10;
+        carr = -1;
+      } else carr = 0;
+      ans.num[i] = (byte) (temp);
+    }
+    num[TR-1] = carr;
+    return ans;
+  }
+
 
   public BigNum add(BigNum value){
     BigNum[] s = sort2(this,value);
 
     if(!s[1].isMinus()) return add2plus(s[0],s[1]); // both are positive
     if(s[0].isMinus()) return add2minus(s[0],s[1]); // both are negative
-    return this; // TODO
+    return add2O(s[0],s[1]);
   }
 
   public BigNum subtract(BigNum value){
@@ -130,13 +151,13 @@ public class BigNum{
 
 
   public static void main(String[] args) {
-    BigNum bigNum1 = new BigNum("124");
-    BigNum bigNum2 = new BigNum("456");
+    BigNum bigNum1 = new BigNum("-12499595");
+    BigNum bigNum2 = new BigNum("-459591956");
     System.out.println(bigNum1.add(bigNum2));
     System.out.println();
 
-    bigNum1 = new BigNum("-123");
-    bigNum2 = new BigNum("-123");
+    bigNum1 = new BigNum("123");
+    bigNum2 = new BigNum("123");
     System.out.println(bigNum1.add(bigNum2));
     System.out.println();
 
