@@ -182,6 +182,7 @@ public class BigNum{
     if(this.isMinus() || value.isMinus()) return ans; // not good!
     while(!ans.isMinus()){
       ans = ans.subtract(value);
+      if(ans.isZero()) return ans;
     }
     ans = ans.add(value);
     return ans;
