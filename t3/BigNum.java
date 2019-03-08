@@ -1,7 +1,7 @@
 public class BigNum{
   private byte[] num;
   private boolean minus;
-  private static final int TR = 5000; //TODO
+  private int TR = 5000; //TODO
 
   private String signHandle(String handle){
     char signChar = handle.charAt(0);
@@ -14,7 +14,7 @@ public class BigNum{
     return input.charAt(0) == '-';
   }
 
-  public boolean isMinus(){
+  private boolean isMinus(){
     return minus;
   }
 
@@ -34,11 +34,11 @@ public class BigNum{
     }
   }
 
-  public BigNum(){
+  private BigNum(){
     this( (byte) 0);
   }
 
-  public BigNum(byte value){
+  private BigNum(byte value){
     num = new byte [TR];
     for (int i = 0; i < TR; i++ ) {
       num[i] = value;
@@ -148,7 +148,6 @@ public class BigNum{
 
   public BigNum add(BigNum value){
     BigNum[] s = sort2(this,value);
-
     if(!s[1].isMinus()) return add2plus(s[0],s[1]); // both are positive
     if(s[0].isMinus()) return add2minus(s[0],s[1]); // both are negative
     return add2O(s[0],s[1]);
@@ -183,34 +182,4 @@ public class BigNum{
 
     return ans;
   }
-
-  public static void main(String[] args) {
-    BigNum bigNum1 = new BigNum("123");
-    BigNum bigNum2 = new BigNum("456");
-    System.out.println(bigNum1.add(bigNum2));
-    System.out.println(bigNum1.multiply(bigNum2));
-    System.out.println(bigNum1.subtract(bigNum2));
-    System.out.println(bigNum2.remainder(bigNum1));
-    System.out.println(bigNum1);
-    System.out.println(bigNum2);
-    System.out.println();
-
-    bigNum1 = new BigNum("+1234567");
-    bigNum2 = new BigNum("-987654");
-    System.out.println(bigNum1.add(bigNum2));
-    System.out.println(bigNum1.multiply(bigNum2));
-    System.out.println(bigNum1.subtract(bigNum2));
-    System.out.println(bigNum1);
-    System.out.println(bigNum2);
-    System.out.println();
-
-    bigNum1 = new BigNum("-123");
-    bigNum2 = new BigNum("123");
-    System.out.println(bigNum1.add(bigNum2));
-    System.gc();
-    java.util.Scanner c = new java.util.Scanner(System.in);
-    String s = c.next();
-}
-
-
 }
