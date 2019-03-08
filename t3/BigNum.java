@@ -1,7 +1,7 @@
 public class BigNum{
   private byte[] num;
   private boolean minus;
-  private int TR = 5000; //TODO
+  private static final int TR = 5000; //TODO
 
   private String signHandle(String handle){
     char signChar = handle.charAt(0);
@@ -178,8 +178,12 @@ public class BigNum{
   }
 
   public BigNum remainder(BigNum value){
-    BigNum ans = new BigNum();
-
+    BigNum ans  = this;
+    if(this.isMinus() || value.isMinus()) return ans; // not good!
+    while(!ans.isMinus()){
+      ans = ans.subtract(value);
+    }
+    ans = ans.add(value);
     return ans;
   }
 }
