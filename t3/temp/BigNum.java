@@ -4,8 +4,8 @@
  * simple use: BigNum a = new BigNum("123");
  */
 public class BigNum{
-    private byte[] num;
-    private boolean minus;
+    private int[] num;
+    private boolean sign;
     private static final int TR = 5000; // max number of digits
 
     /**
@@ -13,7 +13,8 @@ public class BigNum{
      * and add + to first if it is neccesary
      */
     private static String signHandle(String handle){
-
+      if(handle.charAt(0) != '+' &&  handle.charAt(0) != '-' ) handle = "+" + handle;
+      return handle;
     }
 
 
@@ -21,6 +22,10 @@ public class BigNum{
      * check whenever bignum is zero or not
      */
     public boolean isZero(){
+      long sum = 0;
+      for (int i : this.num)
+        sum+= i;
+      return sum==0;
     }
 
     /**
@@ -28,8 +33,16 @@ public class BigNum{
      * construct a BigNum with a value of string and handle first + or -
      */
     public BigNum(String value){
-
+      this();
+      value = signHandle(value);
+      int len = value.length();
+      int numi = 0;
+      for (int i=len-1; i>0;i-- ) {
+        num[numi++] = value.charAt(i)-'0';
+      }
+      sign = value.charAt(0)=='-';
     }
+
 
 
     /**
@@ -38,29 +51,37 @@ public class BigNum{
      * same as calling BigNum("0")
      */
     private BigNum(){
-
+      sign = false;
+      num = new int[TR];
+      for (int i =0;i < TR ; i++ ) {
+        num[i]=0;
+      }
     }
 
-
-    /**
-     * a private (internal method) constructor
-     * it will set every bignum digit Bignum to value
-     */
-    private BigNum(byte value){
-
-    }
 
     /**
      * make a string from sign and all digits of bignum to print it!
      */
     public String toString(){
 
+      int mean = tedadRagham();
+      String ans = "";
+      for (int i=0; i<mean; i++ ) {
+        ans = num[i] + ans;
+      }
+      ans = (sign?"-":"") + ans;
+      return ans;
     }
 
     /**
      * count digits of bignum and return an int
      */
     public int tedadRagham(){
+      int mean = 1;
+      for (int i=0; i<TR; i++ ) {
+        if(num[i]!=0) mean = i;
+      }
+      return mean;
     }
 
     /**
@@ -69,6 +90,7 @@ public class BigNum{
      * use few submethods to manage adding
      */
     public BigNum add(BigNum value){
+      return new BigNum("0");
     }
 
     /**
@@ -77,6 +99,8 @@ public class BigNum{
      * it use add with minus of value ( a-b -> a+(-b) )
      */
     public BigNum subtract(BigNum value){
+      value.sign = !value.sign;
+      return add(value);
     }
 
     /**
@@ -84,7 +108,7 @@ public class BigNum{
      * it will not change this at all
      */
     public BigNum multiply(BigNum value){
-
+      return new BigNum("0");
     }
 
     /**
@@ -95,5 +119,7 @@ public class BigNum{
      * return ans
      */
     public BigNum remainder(BigNum value){
+      return new BigNum("0");
+    }
 
 }
