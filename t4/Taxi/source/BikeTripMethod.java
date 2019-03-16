@@ -1,8 +1,8 @@
 
 public class BikeTripMethod extends TripMethod {
-	
+
 	public int calcPrice(TripParam params){
-		System.err.println("start bike.calcP");
+		
 			boolean rain = params.isRainy();
 			boolean peak = params.isPeakTime();
 			final int mapPrice = super.getMapPrice(params);
