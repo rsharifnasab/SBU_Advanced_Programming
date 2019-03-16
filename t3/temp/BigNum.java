@@ -64,7 +64,7 @@ public class BigNum{
      */
     public String toString(){
 
-      int mean = tedadRagham();
+      int mean = meanDigit;
       String ans = "";
       for (int i=0; i<mean; i++ ) {
         ans = num[i] + ans;
@@ -76,7 +76,7 @@ public class BigNum{
     /**
      * count digits of bignum and return an int
      */
-    public int tedadRagham(){
+    public int meanDigit{
       int mean = 1;
       for (int i=0; i<TR; i++ ) {
         if(num[i]!=0) mean = i;
