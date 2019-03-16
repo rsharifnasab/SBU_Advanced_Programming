@@ -3,9 +3,10 @@ public class Main{
     TripHandler taxi = TripHandler.getInstance();
 
     //سفر ویژه از ناحیه 1 به 1 در ساعت اوج ترافیک و هوای غیربارانی
-    int price = taxi.calcPrice("vip", new TripParam(1, 1, true, false));
+    int price = 0;
     int price2 = 0;
-    //= new VIPTripMethod().calcPrice(new TripParam(1, 1, true, false));
+    price = taxi.calcPrice("vip", new TripParam(1, 1, true, false));
+    //price2 = new VIPTripMethod().calcPrice(new TripParam(1, 1, true, false));
     System.out.println(price + " = " + price2);
 
     //سفر با موتور از ناحیه 2 به 4 در ساعت اوج ترافیک و در هوای بارانی
