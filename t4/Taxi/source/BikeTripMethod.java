@@ -1,11 +1,16 @@
 
 public class BikeTripMethod extends TripMethod {
 
+
 	public int calcPrice(TripParam params){
-		
+
 			boolean rain = params.isRainy();
 			boolean peak = params.isPeakTime();
-			final int mapPrice = super.getMapPrice(params);
+
+			int from = params.getSource();
+			int to = params.getDestination();
+			final int mapPrice = DistanceMap.distance[from][to];
+
 			final int paye =4000;
 			double ratio = 1D;
 			if(peak && rain) ratio = 1.5D;

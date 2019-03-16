@@ -5,7 +5,11 @@ public class VIPTripMethod extends TripMethod {
 
 			boolean rain = params.isRainy();
 			boolean peak = params.isPeakTime();
-			final int mapPrice = super.getMapPrice(params);
+
+			int from = params.getSource();
+			int to = params.getDestination();
+			final int mapPrice = DistanceMap.distance[from][to];
+
 			final int paye =10000;
 			double ratio = 1D;
 			if(peak && rain) ratio = 3D;

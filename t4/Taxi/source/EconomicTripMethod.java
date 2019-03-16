@@ -5,7 +5,12 @@ public class EconomicTripMethod extends TripMethod {
 
 			boolean rain = params.isRainy();
 			boolean peak = params.isPeakTime();
-			final int mapPrice = super.getMapPrice(params);
+
+			int from = params.getSource();
+			int to = params.getDestination();
+			final int mapPrice = DistanceMap.distance[from][to];
+
+
 			final int paye =5000;
 			double ratio = 1D;
 			if(peak && rain) ratio = 1.4D;
