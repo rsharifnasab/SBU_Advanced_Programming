@@ -1,5 +1,6 @@
 public class Main{
   public static void main(String[] args) {
+    
     PlayList playList = new PlayList(50);
     playList.addMusic(new Music("a", "b", "c", 2000));
     playList.addMusic(new Music("aa", "bb", "cc", 2000));

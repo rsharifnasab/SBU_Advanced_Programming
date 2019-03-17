@@ -1,5 +1,6 @@
 public class PlayList{
-  private Music[] db;
+  //private  TODO
+  Music[] db;
   private int last=0;
 
   public PlayList(int size){
@@ -7,7 +8,12 @@ public class PlayList{
   }
 
   public Music[] getMusics(){
-    return db;
+    int fixedSize = this.getNumberOfMusics();
+    PlayList ans = new PlayList(fixedSize);
+    for (Music a : this.db) { //TODO working well but it could be dangerous
+      ans.addMusic(a);
+    }
+    return ans.db;
   }
 
   public int getNumberOfMusics(){
@@ -15,16 +21,18 @@ public class PlayList{
   }
 
   public boolean isFull(){
-    return((last+1)>=db.length);
-  }
-
-  public boolean addMusic(Music music){
-    if(this.isFull()) return false;
-    db[last++] = music;
+    if(last < db.length) return false;
     return true;
   }
 
-  public PlayList filter(PlayList accepter){
+  public boolean addMusic(Music music){
+    //System.err.println("adding music: " + music);
+    if(this.isFull()) return false;
+    db[this.last++] = music;
+    return true;
+  }
+
+  public PlayList filter(Filter accepter){ //TODO
     PlayList ansBL = new PlayList(this.getNumberOfMusics());
     for (Music toCheck : db) {
       if(accepter.accept(toCheck)) ansBL.addMusic(toCheck);
