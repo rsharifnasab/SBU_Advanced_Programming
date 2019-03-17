@@ -26,7 +26,6 @@ public class PlayList{
   }
 
   public boolean addMusic(Music music){
-    //System.err.println("adding music: " + music);
     if(this.isFull()) return false;
     db[this.last++] = music;
     return true;
@@ -34,9 +33,12 @@ public class PlayList{
 
   public PlayList filter(Filter accepter){ //TODO
     PlayList ansBL = new PlayList(this.getNumberOfMusics());
+
     for (Music toCheck : db) {
+      if(toCheck == null) break;
       if(accepter.accept(toCheck)) ansBL.addMusic(toCheck);
     }
+
     int fixedSize = ansBL.getNumberOfMusics();
     PlayList ansGL = new PlayList(fixedSize);
     for (Music t:ansBL.getMusics()) {

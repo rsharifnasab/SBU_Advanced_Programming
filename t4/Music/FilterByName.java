@@ -1,6 +1,6 @@
-public class FilterByname extends Filter {
+public class FilterByName extends Filter {
     String [] OKs;
-    public FilterByname(String...args){
+    public FilterByName(String...args){
       OKs = args;
     }
     public boolean accept(Music music){
