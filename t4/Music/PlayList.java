@@ -47,6 +47,19 @@ public class PlayList{
     return ansGL;
   }
 
+  public Object[] collectData(DataCollector collector){
+    int fixedSize = getNumberOfMusics();
+    Object[] ans = new Object[fixedSize];
+    for(int i = 0; i < fixedSize; i++){
+      ans[i] = collector.get(this.db[i]);
+    }
+    return ans;
+  }
+
+  public Object[] collectDataNoDuplicate(DataCollector collector){
+    return new Object[0];//TODO
+  }
+
 
 
 }
