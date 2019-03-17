@@ -24,6 +24,19 @@ public class PlayList{
     return true;
   }
 
+  public PlayList filter(PlayList accepter){
+    PlayList ansBL = new PlayList(this.getNumberOfMusics());
+    for (Music toCheck : db) {
+      if(accepter.accept(toCheck)) ansBL.addMusic(toCheck);
+    }
+    int fixedSize = ansBL.getNumberOfMusics();
+    PlayList ansGL = new PlayList(fixedSize);
+    for (Music t:ansBL.getMusics()) {
+      ansGL.addMusic(t);
+    }
+    return ansGL;
+  }
+
 
 
 }
