@@ -9,5 +9,4 @@ public class FilterByAlbum extends Filter {
       }
       return false;
     }
-
 }
