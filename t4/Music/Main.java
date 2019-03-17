@@ -13,7 +13,7 @@ public class Main{
       System.out.println(names[i]);
     }
     System.out.println();
-    PlayList tmp = playList.filter(new FilterByArtist("cc"));
+    PlayList tmp = playList.filter(new FilterByAlbum("bb"));
     for (int i = 0; i < tmp.getNumberOfMusics(); i++) {
       System.out.println(tmp.getMusics()[i]);
     }
