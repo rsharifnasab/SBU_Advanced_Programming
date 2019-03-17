@@ -12,8 +12,8 @@ public class Main{
     for (int i = 0; i < playList.getNumberOfMusics(); i++) {
       System.out.println(names[i]);
     }
-
-    PlayList tmp = playList.filter(new FilterByName("aaa"));
+    System.out.println();
+    PlayList tmp = playList.filter(new FilterByArtist("cc"));
     for (int i = 0; i < tmp.getNumberOfMusics(); i++) {
       System.out.println(tmp.getMusics()[i]);
     }
