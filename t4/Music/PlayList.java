@@ -57,7 +57,26 @@ public class PlayList{
   }
 
   public Object[] collectDataNoDuplicate(DataCollector collector){
-    return new Object[0];//TODO
+    Object[] duplicate = collectData(collector);
+    int allSize = duplicate.length;
+    int last = 0;
+    Object[] noDuplicateBL = new Object[allSize];
+
+
+    for (int i=0;i<allSize;i++ ) {
+      boolean hast = false;
+      for (int j=0;j<allSize;j++ ) {
+        if(duplicate[i].equals(noDuplicateBL[j])) hast = true;
+      }
+      System.out.println("hast :" + hast);
+      if(!hast) noDuplicateBL[last++] =  duplicate[i];
+    }
+    System.out.println("last is :" + last);
+    Object[] ans = new Object[last];
+    for (int i=0;i<last;i++ ) {
+      ans[i] = noDuplicateBL[i];
+    }
+    return ans;
   }
 
 
