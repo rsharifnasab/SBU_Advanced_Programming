@@ -4,7 +4,7 @@ public class YaldaDiscountStrategy implements DiscountStrategy
     public long priceByDiscount(Clothing clothing)
     {
 		  long basePrice = clothing.getBasePrice();
-      String clothType = clothing.getName(); //ERROR?
+      String clothType = clothing.getClass().getName(); //ERROR?
       double priceRatio = 0.75;
 
       if(clothType.equals("Jacket")) priceRatio = 0.9;
