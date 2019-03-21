@@ -71,7 +71,7 @@ public class PlayList{
       System.out.println("hast :" + hast);
       if(!hast) noDuplicateBL[last++] =  duplicate[i];
     }
-    System.out.println("last is :" + last);
+    //System.out.println("last is :" + last);
     Object[] ans = new Object[last];
     for (int i=0;i<last;i++ ) {
       ans[i] = noDuplicateBL[i];
