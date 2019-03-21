@@ -6,7 +6,7 @@ public abstract class Clothing {
 	private Season season;
 	private long basePrice;
 	private DiscountStrategy discountStrategy = null;
-	
+
 	public Clothing(String name, Season season, long basePrice) {
 		this.name = name;
 		this.season = season;
@@ -14,11 +14,12 @@ public abstract class Clothing {
 	}
 
 	public long getPrice() {
-		// TODO get price by considering discountStrategy
+		if(discountStrategy = null) return this.basePrice;
+		return discountStrategy.priceByDiscount(this);
 	}
-	
+
 	public void setDiscountStrategy(DiscountStrategy discountStrategy) {
-		// TODO set discountStrategy
+		this.discountStrategy = discountStrategy;
 	}
 
 	public String getName() {
@@ -44,6 +45,6 @@ public abstract class Clothing {
 	public void setBasePrice(long basePrice) {
 		this.basePrice = basePrice;
 	}
-	
+
 
 }
