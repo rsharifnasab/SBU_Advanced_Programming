@@ -10,6 +10,6 @@ public class YaldaDiscountStrategy implements DiscountStrategy
       if(clothType.equals("Jacket")) priceRatio = 0.9;
       if(clothType.equals("Pants")) priceRatio = 0.8;
 
-      return (long) basePrice * priceRatio;
+      return (long) (basePrice * priceRatio);
     }
 }
