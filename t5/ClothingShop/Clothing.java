@@ -14,7 +14,7 @@ public abstract class Clothing {
 	}
 
 	public long getPrice() {
-		if(discountStrategy = null) return this.basePrice;
+		if(discountStrategy == null) return this.basePrice;
 		return discountStrategy.priceByDiscount(this);
 	}
 
