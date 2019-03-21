@@ -8,7 +8,8 @@ public class YaldaDiscountStrategy implements DiscountStrategy
       double priceRatio = 0.75;
 
       if(clothType.equals("Jacket")) priceRatio = 0.9;
-      if(clothType.equals("Pants")) priceRatio = 0.8;
+      else if(clothType.equals("Socks")) priceRatio = 0.8;
+      System.err.println("clothType :" + clothType);
 
       return (long) (basePrice * priceRatio);
     }
