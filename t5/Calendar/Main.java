@@ -6,7 +6,7 @@ import representation.FullRepresentation;
 
 public class Main
 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         CustomCalendar shamsiCalendar = new ShamsiCustomCalendar("1/1/1397");
         shamsiCalendar.setCalendarRepresentation(new DateRepresentation());
         System.out.println(shamsiCalendar); // 01/01/1397

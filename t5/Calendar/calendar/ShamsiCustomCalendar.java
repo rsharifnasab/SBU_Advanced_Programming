@@ -1,7 +1,7 @@
 package calendar;
 
 import representation.CalendarRepresentation;
-import exception.IllegalCalendarFormatExceptoin;
+import calendar.exception.IllegalCalendarFormatException;
 
 public class ShamsiCustomCalendar implements CustomCalendar {
   private int day;
@@ -11,18 +11,19 @@ public class ShamsiCustomCalendar implements CustomCalendar {
 
   CalendarRepresentation representation;
 
-  public ShamsiCustomCalendar(String inp) throws exception{
+  public ShamsiCustomCalendar(String inp) throws Exception{
+
     try{
       String[] db = inp.split("/");
       int day = Integer.parseInt(db[0]);
       int month = Integer.parseInt(db[1]);
       int year = Integer.parseInt(db[2]);
     }
-    catch(exception e){
+    catch(Exception e){
       throw new IllegalCalendarFormatException("error!");
     }
     if(isValidDate(day,month,year)){ this.day = day; this.month = month; this.year = year;}
-    else throw new IllegalCalendarFormatException("invalid date");
+    else throw new IllegalCalendarFormatException();
   }
   public int getDay(){
     return this.day;

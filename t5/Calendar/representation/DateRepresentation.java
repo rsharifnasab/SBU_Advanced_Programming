@@ -1,7 +1,7 @@
 package representation;
 
 import calendar.CustomCalendar;
-import exception.IllegalCalendarFormatExceptoin;
+import calendar.exception.IllegalCalendarFormatException;
 
 public class DateRepresentation implements CalendarRepresentation {
     String getRepresentation(CustomCalendar calendar){
