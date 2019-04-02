@@ -7,11 +7,11 @@ public class GregorianCustomCalendar implements CustomCalendar {
   private int day;
   private int month;
   private int year;
-  private static final String[] monthDB = {null,"Farvardin","Ordibehesht","Khordad","Tir","Mordad","Shahrivar","Mehr","Aban","Azar","Dey","Bahman","Esfand"};
+  private static final String[] monthDB = {null,"January","February","March","April","May","June","July","August","September","October","November","December"};
 
   CalendarRepresentation representation;
 
-  public ShamsiCustomCalendar(String inp) throws Exception{
+  public GregorianCustomCalendar(String inp) throws Exception{
     int day,month,year;
     try{
       String[] db = inp.split("/");
@@ -38,7 +38,11 @@ public class GregorianCustomCalendar implements CustomCalendar {
     if(day > 31) return false;
     if(month > 12) return false;
 
-    if(month > 6 && day==31) return false;
+    if(month == 2 && day>28) return false;
+    if(month == 4 && day>30) return false;
+    if(month == 6 && day>30) return false;
+    if(month == 9 && day>30) return false;
+    if(month == 11 && day>30) return false;
 
     return true;
   }
@@ -100,7 +104,7 @@ public class GregorianCustomCalendar implements CustomCalendar {
     }
 
     public int compareTo(CustomCalendar object){
-      if(object instanceof ShamsiCustomCalendar == false) throw new IllegalArgumentException("not same input!");
+      if(object instanceof GregorianCustomCalendar == false) throw new IllegalArgumentException("not same input!");
       if(isValidDate(object.getDay(),object.getMonth(),object.getYear()) == false) throw new IllegalArgumentException();
 
       if(object.getYear() > this.getYear()) return -1;
