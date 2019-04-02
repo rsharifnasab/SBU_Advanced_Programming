@@ -11,11 +11,14 @@ class ShamsiCustomCalendar implements CustomCalendar {
 
     CalendarRepresentation representation;
 
-    int getDay(){
-      return year;
+    public int getDay(){
+      return this.day;
     }
 
-    void setDay(int day){
+    public void setDay(int day) throws IllegalArgumentException{
+      if(day>31) throw new IllegalArgumentException("date is bigger than 31");
+      if(day<1) throw new IllegalArgumentException("date should be bigger mosavi 1");
+      if(month>6 && (day==31)) throw new IllegalArgumentException("invalid date");
       this.day = day;
     }
 
@@ -24,6 +27,7 @@ class ShamsiCustomCalendar implements CustomCalendar {
     }
 
     void setMonth(int month){
+      
       this.month = month;
     }
 
