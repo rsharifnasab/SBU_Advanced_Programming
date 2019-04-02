@@ -3,6 +3,9 @@ int main()
 {
 	long m,n,k;
 	std:: cin >> n >> m >> k;
-	std:: cout << (n-k)*m << std::endl;
+
+	srand(time(0));
+	int r = rand()%n*m;
+	std:: cout << r << std::endl;
 	return 0;
 }
