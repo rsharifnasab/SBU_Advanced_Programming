@@ -101,16 +101,16 @@ public class ShamsiCustomCalendar implements CustomCalendar {
 
     public int compareTo(CustomCalendar object){
       if(object instanceof ShamsiCustomCalendar == false) throw new IllegalArgumentException("not same input!");
-      if(isValidDate(object.day,object.month,object.year) == false) throw new IllegalArgumentException();
+      if(isValidDate(object.getDay(),object.getMonth(),object.getYear()) == false) throw new IllegalArgumentException();
 
-      if(object.year > this.year) return -1;
-      if(object.year < this.year) return +1;
+      if(object.getYear() > this.getYear()) return -1;
+      if(object.getYear() < this.getYear()) return +1;
 
-      if(object.month > this.month) return -1;
-      if(object.month < this.month) return +1;
+      if(object.getMonth() > this.getMonth()) return -1;
+      if(object.getMonth() < this.getMonth()) return +1;
 
-      if(object.day > this.day) return -1;
-      if(object.day < this.day) return +1;
+      if(object.getDay() > this.getDay()) return -1;
+      if(object.getDay() < this.getDay()) return +1;
 
       return 0;
     }
