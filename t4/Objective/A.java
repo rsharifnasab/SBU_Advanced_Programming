@@ -1,7 +1,7 @@
 public class A{
   public final String method1(){
     String className = getClass().getName();
-    if(className.equals("B")) return "A1";
+    if(this instanceof B) return "A1";
     return className+"1";
   }
   public String method2(){
