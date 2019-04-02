@@ -11,6 +11,19 @@ public class ShamsiCustomCalendar implements CustomCalendar {
 
   CalendarRepresentation representation;
 
+  public ShamsiCustomCalendar(String inp) throws exception{
+    try{
+      String[] db = inp.split("/");
+      int day = Integer.parseInt(db[0]);
+      int month = Integer.parseInt(db[1]);
+      int year = Integer.parseInt(db[2]);
+    }
+    catch(exception e){
+      throw new IllegalCalendarFormatException("error!");
+    }
+    if(isValidDate(day,month,year)){ this.day = day; this.month = month; this.year = year;}
+    else throw new IllegalCalendarFormatException("invalid date");
+  }
   public int getDay(){
     return this.day;
   }
