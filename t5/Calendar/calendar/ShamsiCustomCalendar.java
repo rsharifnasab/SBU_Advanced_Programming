@@ -60,11 +60,25 @@ class ShamsiCustomCalendar implements CustomCalendar {
     fMonth = this.month;
     fDay = this.day;
     fYear = this.year;
-    
+    if(isValidDate(fDay+1,fMonth,fYear)) {this.day++;}
+    else if(isValidDate(1,fMonth+1,fYear)) {this.day=1; this.month++;}
+    else {this.day=1; this.month=1; this.year++;}
+    return this;
   }
 
     public CustomCalendar decreaseOneDay(){
-
+      fMonth = this.month;
+      fDay = this.day;
+      fYear = this.year;
+      if(isValidDate(fDay-1,fMonth,fYear)) {this.day--;}
+      else if(isValidDate(31,fMonth-1,fYear)) {this.day=31; this.month--;}
+      else if(isValidDate(30,fMonth-1,fYear)) {this.day=30; this.month--;}
+      else if(isValidDate(29,fMonth-1,fYear)) {this.day=29; this.month--;}
+      else if(isValidDate(28,fMonth-1,fYear)) {this.day=28; this.month--;}
+      else if(isValidDate(31,12,fYear-1)) {this.day=31; this.month=12; this.year--;}
+      else if(isValidDate(30,12,fYear-1)) {this.day=30; this.month=12; this.year--;}
+      else {this.day=29; this.month=12; this.year--;} // this should not happen!
+      return this;
     }
 
     public void setCalendarRepresentation(CalendarRepresentation representation){
@@ -72,12 +86,24 @@ class ShamsiCustomCalendar implements CustomCalendar {
     }
 
     public int compareTo(CustomCalendar object){
-      //if(t)
+      if(object instanceof ShamsiCustomCalendar == false) throw new IllegalArgumentException("not same input!");
+      if(isValidDate(object.day,object.month,object.year) == false) throw new IllegalArgumentException("invalid date");
+
+      if(object.year > this.year) return -1;
+      if(object.year < this.year) return +1;
+
+      if(object.month > this.month) return -1;
+      if(object.month < this.month) return +1;
+
+      if(object.day > this.day) return -1;
+      if(object.day < this.day) return +1;
+
+      return 0;
     }
 
     public String toString(){
       if(representation == null) throw new IllegalStateException("no representation");
-      representation.getRepresentation(this);
+      return representation.getRepresentation(this);
     }
 
   }
