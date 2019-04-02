@@ -12,12 +12,12 @@ public class ShamsiCustomCalendar implements CustomCalendar {
   CalendarRepresentation representation;
 
   public ShamsiCustomCalendar(String inp) throws Exception{
-
+    int day,month,year;
     try{
       String[] db = inp.split("/");
-      int day = Integer.parseInt(db[0]);
-      int month = Integer.parseInt(db[1]);
-      int year = Integer.parseInt(db[2]);
+      day = Integer.parseInt(db[0]);
+      month = Integer.parseInt(db[1]);
+      year = Integer.parseInt(db[2]);
     }
     catch(Exception e){
       throw new IllegalCalendarFormatException();
