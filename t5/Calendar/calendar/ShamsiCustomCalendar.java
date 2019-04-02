@@ -15,11 +15,23 @@ class ShamsiCustomCalendar implements CustomCalendar {
     return this.day;
   }
 
+  private static boolean isValidDate(int day,int month,int year){
+
+    if(day < 1) return false;
+    if(month < 1) return false;
+    if(year < 1) return false;
+
+    if(day > 31) return false;
+    if(month > 12) return false;
+
+    if(month > 6 && day==31) return false;
+
+    return true;
+  }
+
   public void setDay(int day) throws IllegalArgumentException{
-    if(day>31) throw new IllegalArgumentException("date is bigger than 31");
-    if(day<1) throw new IllegalArgumentException("date should be bigger mosavi 1");
-    if(month>6 && (day==31)) throw new IllegalArgumentException("invalid date");
-    this.day = day;
+    if(isValidDate(day,1,1)) this.day = day;
+    else throw new IllegalArgumentException("invalud date");
   }
 
   public int getMonth(){
@@ -27,9 +39,8 @@ class ShamsiCustomCalendar implements CustomCalendar {
   }
 
   public void setMonth(int month){
-    if(month > 12) throw new IllegalArgumentException("month is bigger than 12");
-    if(month < 1) throw new IllegalArgumentException("month is lower than 1");
-    this.month = month;
+    if(isValidDate(1,month,1)) this.month = month;
+    else throw new IllegalArgumentException("invalid month");
   }
 
   public int getYear(){
@@ -37,8 +48,8 @@ class ShamsiCustomCalendar implements CustomCalendar {
   }
 
   public void setYear(int year){
-    if(year < 1) throw new IllegalArgumentException("year should be bigger mosavi than 1");
-    this.year = year;
+    if(isValidDate(1,1,year)) this.year = year;
+    else throw new IllegalArgumentException("year should be bigger mosavi than 1");
   }
 
   public String getMonthName(){
@@ -49,25 +60,7 @@ class ShamsiCustomCalendar implements CustomCalendar {
     fMonth = this.month;
     fDay = this.day;
     fYear = this.year;
-    try{
-      try{
-        setDay(fDay+1);
-      }
-      catch(exception e){
-        setDay(1);
-        try{
-          setMonth(fMonth+1);
-        }
-        catch(exception e){
-          setMonth(1);
-          setYear(fYear+1);
-        }
-
-      }
-    }
-    catch(exception e){
-      System.err.println("error!");
-    }
+    
   }
 
     public CustomCalendar decreaseOneDay(){
