@@ -5,6 +5,6 @@ import exception.IllegalCalendarFormatExceptoin;
 
 public class DateRepresentation implements CalendarRepresentation {
     String getRepresentation(CustomCalendar calendar){
-
+      return "day!";
     }
 }

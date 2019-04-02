@@ -1,11 +1,10 @@
 import calendar.CustomCalendar;
 import calendar.exception.IllegalCalendarFormatException;
-import calendar.GregorianCustomCalendar;
 import calendar.ShamsiCustomCalendar;
 import representation.DateRepresentation;
 import representation.FullRepresentation;
 
-public class Test
+public class Main
 {
     public static void main(String[] args) {
         CustomCalendar shamsiCalendar = new ShamsiCustomCalendar("1/1/1397");
@@ -38,31 +37,5 @@ public class Test
         shamsiCalendar.setMonth(12);
         shamsiCalendar.increaseOneDay().increaseOneDay().increaseOneDay().decreaseOneDay();
         System.out.println(shamsiCalendar); // 02/01/1398
-
-        try {
-            CustomCalendar gregorianCalendar = new GregorianCustomCalendar("salam");
-            System.out.println("Unable to catch IllegalCalendarFormatException");
-        } catch (IllegalCalendarFormatException e) {
-            System.out.println("Catch IllegalCalendarFormatException");
-        }
-        CustomCalendar gregorianCalendar = new GregorianCustomCalendar("01/1/1980");
-        try {
-            System.out.println(gregorianCalendar); // representation must be set before print
-            System.out.println("Unable to catch IllegalStateException");
-        } catch (IllegalStateException e) {
-            System.out.println("Catch IllegalStateException");
-        }
-        gregorianCalendar.setCalendarRepresentation(new DateRepresentation());
-        System.out.println(gregorianCalendar); // 01/01/1980
-        gregorianCalendar.setYear(2020);
-        gregorianCalendar.setMonth(12);
-        while (gregorianCalendar.getMonth() != 1)
-            gregorianCalendar.increaseOneDay();
-        System.out.println(gregorianCalendar); // 01/01/2021
-
-        System.out.println(gregorianCalendar.compareTo(new GregorianCustomCalendar("02/01/2021")) < 0); // true
-        System.out.println(gregorianCalendar.compareTo(new GregorianCustomCalendar("01/02/2021")) < 0); // true
-        System.out.println(gregorianCalendar.compareTo(new GregorianCustomCalendar("15/12/2020")) > 0); // true
-        System.out.println(gregorianCalendar.compareTo(gregorianCalendar)); // 0
     }
 }

@@ -5,6 +5,6 @@ import exception.IllegalCalendarFormatExceptoin;
 
 public class FullRepresentation implements CalendarRepresentation {
     String getRepresentation(CustomCalendar calendar){
-
+      return "fuuull";
     }
 }

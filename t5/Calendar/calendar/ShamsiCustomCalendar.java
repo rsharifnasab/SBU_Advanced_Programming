@@ -3,7 +3,7 @@ package calendar;
 import representation.CalendarRepresentation;
 import exception.IllegalCalendarFormatExceptoin;
 
-class ShamsiCustomCalendar implements CustomCalendar {
+public class ShamsiCustomCalendar implements CustomCalendar {
   private int day;
   private int month;
   private int year;
@@ -30,7 +30,7 @@ class ShamsiCustomCalendar implements CustomCalendar {
   }
 
   public void setDay(int day) throws IllegalArgumentException{
-    if(isValidDate(day,1,1)) this.day = day;
+    if(isValidDate(day,month,year)) this.day = day;
     else throw new IllegalArgumentException("invalud date");
   }
 
@@ -39,7 +39,7 @@ class ShamsiCustomCalendar implements CustomCalendar {
   }
 
   public void setMonth(int month){
-    if(isValidDate(1,month,1)) this.month = month;
+    if(isValidDate(day,month,year)) this.month = month;
     else throw new IllegalArgumentException("invalid month");
   }
 
@@ -48,7 +48,7 @@ class ShamsiCustomCalendar implements CustomCalendar {
   }
 
   public void setYear(int year){
-    if(isValidDate(1,1,year)) this.year = year;
+    if(isValidDate(day,month,year)) this.year = year;
     else throw new IllegalArgumentException("year should be bigger mosavi than 1");
   }
 
