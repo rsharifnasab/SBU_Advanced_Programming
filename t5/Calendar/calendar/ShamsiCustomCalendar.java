@@ -20,7 +20,7 @@ public class ShamsiCustomCalendar implements CustomCalendar {
       int year = Integer.parseInt(db[2]);
     }
     catch(Exception e){
-      throw new IllegalCalendarFormatException("error!");
+      throw new IllegalCalendarFormatException();
     }
     if(isValidDate(day,month,year)){ this.day = day; this.month = month; this.year = year;}
     else throw new IllegalCalendarFormatException();
@@ -71,9 +71,9 @@ public class ShamsiCustomCalendar implements CustomCalendar {
   }
 
   public CustomCalendar increaseOneDay(){
-    fMonth = this.month;
-    fDay = this.day;
-    fYear = this.year;
+    int fMonth = this.month;
+    int fDay = this.day;
+    int fYear = this.year;
     if(isValidDate(fDay+1,fMonth,fYear)) {this.day++;}
     else if(isValidDate(1,fMonth+1,fYear)) {this.day=1; this.month++;}
     else {this.day=1; this.month=1; this.year++;}
@@ -81,9 +81,9 @@ public class ShamsiCustomCalendar implements CustomCalendar {
   }
 
     public CustomCalendar decreaseOneDay(){
-      fMonth = this.month;
-      fDay = this.day;
-      fYear = this.year;
+      int fMonth = this.month;
+      int fDay = this.day;
+      int fYear = this.year;
       if(isValidDate(fDay-1,fMonth,fYear)) {this.day--;}
       else if(isValidDate(31,fMonth-1,fYear)) {this.day=31; this.month--;}
       else if(isValidDate(30,fMonth-1,fYear)) {this.day=30; this.month--;}
@@ -101,7 +101,7 @@ public class ShamsiCustomCalendar implements CustomCalendar {
 
     public int compareTo(CustomCalendar object){
       if(object instanceof ShamsiCustomCalendar == false) throw new IllegalArgumentException("not same input!");
-      if(isValidDate(object.day,object.month,object.year) == false) throw new IllegalArgumentException("invalid date");
+      if(isValidDate(object.day,object.month,object.year) == false) throw new IllegalArgumentException();
 
       if(object.year > this.year) return -1;
       if(object.year < this.year) return +1;
