@@ -11,7 +11,7 @@ public class ShamsiCustomCalendar implements CustomCalendar {
 
   CalendarRepresentation representation;
 
-  public ShamsiCustomCalendar(String inp) throws IllegalCalendarFormatException{
+  public ShamsiCustomCalendar(String inp) throws Exception{
     int day,month,year;
     try{
       String[] db = inp.split("/");

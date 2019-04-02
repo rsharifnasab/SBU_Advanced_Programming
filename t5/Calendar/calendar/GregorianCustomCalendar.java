@@ -11,7 +11,7 @@ public class GregorianCustomCalendar implements CustomCalendar {
 
   CalendarRepresentation representation;
 
-  public GregorianCustomCalendar(String inp) throws Exception{
+  public GregorianCustomCalendar(String inp) throws IllegalCalendarFormatException{
     int day,month,year;
     try{
       String[] db = inp.split("/");
