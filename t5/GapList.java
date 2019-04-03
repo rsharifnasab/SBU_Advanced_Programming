@@ -37,7 +37,7 @@ public class GapList{
   private static int searchByNum(String num){
     for (int i = 0 ; i < lastUser; i++) {
       for (String n : users[i].number) {
-        if(n==null) break;
+        if(n==null) continue;
         long l1 = Long.parseLong(n);
         long l2 = Long.parseLong(num);
         if(l1==l2) return i;
@@ -49,6 +49,8 @@ public class GapList{
   private static int searchByName(){
     String fName = sc.next();
     String lName = sc.next();
+    int last = lName.length()-1;
+    if(lName.charAt(last) == ':') lName = lName.substring(0,last);
     return name2ind(fName,lName);
   }
 
@@ -61,6 +63,16 @@ public class GapList{
     }
     else index = searchByName();
     return index;
+  }
+
+  private static boolean addContact(){
+    int userIndex = search();
+    int friendIndex = search();
+    if(userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
+      System.out.println("addContactError");
+      return false;
+    }
+    return true;
   }
 
   private static boolean searchPrint(){
@@ -78,7 +90,7 @@ public class GapList{
       String order = sc.next();
       if(order.equals("join")) join();
       if(order.equals("search")) searchPrint();
-      //if(order.equals("")) search();
+      if(order.equals("addContact")) addContact();
     }
   }
 }
