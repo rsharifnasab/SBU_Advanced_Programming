@@ -65,6 +65,29 @@ public class GapList{
     return index;
   }
 
+  private static boolean remove(){
+    int userIndex = search();
+    if(userIndex == -1){
+      System.out.println("addContactError");
+      return false;
+    }
+    User toDel = users[userIndex];
+    for (int i = lastUser; i > userIndex; i-- ) {
+      users[i-1] = users[i];
+    }
+    lastUser--;
+    for (int i = 0 ; i < lastUser; i++) {
+      for (int j = 0; j < users[i].friends.length; j++) {
+        if(users[i].friends[j].contact == toDel){
+          for (int l = users[i].friendCount; l>j; l-- ) {
+            users[i].friends[l-1] = users.friend[l];
+          }
+        }
+      }
+    }
+
+  }
+
   private static boolean addContact(){
     int userIndex = search();
     int friendIndex = search();
@@ -92,6 +115,8 @@ public class GapList{
       if(order.equals("join")) join();
       if(order.equals("search")) searchPrint();
       if(order.equals("addContact")) addContact();
+      if(order.equals("remove")) remove();
+
     }
   }
 }
@@ -107,8 +132,8 @@ class User{
   private String lName;
           String[] number = new String[10];
   private int numberCount = 0;
-  private Friend[] friends = new Friend[1000];
-  private int friendCount = 0;
+          Friend[] friends = new Friend[1000];
+          int friendCount = 0;
   public User(String fName,String lName){
     this.fName = fName;
     this.lName = lName;
