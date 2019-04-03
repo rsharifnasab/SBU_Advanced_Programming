@@ -52,13 +52,19 @@ public class GapList{
     return name2ind(fName,lName);
   }
 
-  private static boolean search(){
+
+  private static int search(){
     int index;
     if(sc.hasNextLong()) {
       String num = sc.next();
       index = searchByNum(num);
     }
     else index = searchByName();
+    return index;
+  }
+
+  private static boolean searchPrint(){
+    int index = search();
     if(index == -1) {
       System.out.println("searchError");
       return false;
@@ -71,7 +77,8 @@ public class GapList{
     while (sc.hasNext()) {
       String order = sc.next();
       if(order.equals("join")) join();
-      if(order.equals("search")) search();
+      if(order.equals("search")) searchPrint();
+      //if(order.equals("")) search();
     }
   }
 }
