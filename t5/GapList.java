@@ -68,10 +68,11 @@ public class GapList{
   private static boolean addContact(){
     int userIndex = search();
     int friendIndex = search();
-    if(userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
+    if(userIndex == -1 || friendIndex == -1 || friendIndex == userIndex || users[userIndex].isFriend(users[friendIndex])){
       System.out.println("addContactError");
       return false;
     }
+    users[userIndex].addFriend(users[friendIndex]);
     return true;
   }
 
@@ -115,6 +116,18 @@ class User{
   public String getFName(){ return fName;}
   public String getLName(){ return lName;}
   public void addNum(String num){ this.number[numberCount++] = num; }
+  public void addFriend(User friend){ this.friends[friendCount++] = new Friend(friend); }
+
+  public boolean isFriend(User friend){
+    for (Friend f : friends) {
+      if(f==null) continue;
+      if(friend == f.contact) return true; //TODO
+    }
+    return false;
+  }
+
+
+
   public String toString(){
     String numS = "[";
     for (int i=0;i<numberCount;i++ ) {
