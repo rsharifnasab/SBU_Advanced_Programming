@@ -16,7 +16,7 @@ public class GapList{
     String fName = sc.next();
     String lName = sc.next();
     User temp = new User(fName,lName);
-    while (sc.hasNextInt()) {
+    while (sc.hasNextLong()) {
       temp.addNum(sc.next());
     }
     if(name2ind(fName,lName) != -1 ){ // users exists
@@ -28,11 +28,13 @@ public class GapList{
     return true;
   }
 
-  private static int searchByNum(){
-    String num = sc.next();
+  private static int searchByNum(String num){
     for (int i = 0 ; i < lastUser; i++) {
       for (String n : users[i].number) {
-        if(num.equals(n)) return i;
+        if(n==null) break;
+        long l1 = Long.parseLong(n);
+        long l2 = Long.parseLong(num);
+        if(l1==l2) return i;
       }
     }
     return -1;
@@ -46,8 +48,11 @@ public class GapList{
 
   private static boolean search(){
     int index;
-    if(sc.hasNextInt()) index = searchByNum();
-    else index =  searchByName();
+    if(sc.hasNextLong()) {
+      String num = sc.next();
+      index = searchByNum(num);
+    }
+    else index = searchByName();
     if(index == -1) {
       System.out.println("searchError");
       return false;
@@ -74,7 +79,7 @@ public class GapList{
 class User{
   private String fName;
   private String lName;
-  String[] number = new String[10];
+          String[] number = new String[10];
   private int numberCount = 0;
   private Friend[] friends = new Friend[1000];
   private int friendCount = 0;
@@ -84,13 +89,15 @@ class User{
   }
   public String getFName(){ return fName;}
   public String getLName(){ return lName;}
-  public void addNum(String num){ number[numberCount++] = num; }
+  public void addNum(String num){ this.number[numberCount++] = num; }
   public String toString(){
-    String [] tempNum = new String[numberCount];
+    String numS = "[";
     for (int i=0;i<numberCount;i++ ) {
-      tempNum[i] =number[i];
+      numS = numS + number[i] + ", ";
     }
-    return fName + " " + lName + " " + tempNum;
+    int goodLen = (numS.length()>2)?numS.length()-2 : numS.length();
+    numS = numS.substring(0,goodLen) + "]";
+    return fName + " " + lName + " " + numS;
   }
 
 }
