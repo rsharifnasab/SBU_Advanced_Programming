@@ -5,7 +5,7 @@ public class GapList{
 
   private static int name2ind(String fName,String lName){
     for (int i = 0 ; i < lastUser; i++) {
-      if(users[i].getFName().equals(fName) && users[i].getLName().equals(lName)) return i;
+      if(users[i].getFName().equalsIgnoreCase(fName) && users[i].getLName().equalsIgnoreCase(lName)) return i;
     }
     return -1;
   }
@@ -28,13 +28,32 @@ public class GapList{
     return true;
   }
 
-  private boolean searchByNum(){
-
+  private static int searchByNum(){
+    String num = sc.next();
+    for (int i = 0 ; i < lastUser; i++) {
+      for (String n : users[i].number) {
+        if(num.equals(n)) return i;
+      }
+    }
+    return -1;
   }
 
-  private boolean search(){
-    if(sc.hasNextInt()) return searchByNum();
-    return searchByName();
+  private static int searchByName(){
+    String fName = sc.next();
+    String lName = sc.next();
+    return name2ind(fName,lName);
+  }
+
+  private static boolean search(){
+    int index;
+    if(sc.hasNextInt()) index = searchByNum();
+    else index =  searchByName();
+    if(index == -1) {
+      System.out.println("searchError");
+      return false;
+    }
+    System.out.println(users[index]);
+    return true;
   }
 
   public static void main(String[] args) {
@@ -55,7 +74,7 @@ public class GapList{
 class User{
   private String fName;
   private String lName;
-  private String[] number = new String[10];
+  String[] number = new String[10];
   private int numberCount = 0;
   private Friend[] friends = new Friend[1000];
   private int friendCount = 0;
@@ -66,6 +85,13 @@ class User{
   public String getFName(){ return fName;}
   public String getLName(){ return lName;}
   public void addNum(String num){ number[numberCount++] = num; }
+  public String toString(){
+    String [] tempNum = new String[numberCount];
+    for (int i=0;i<numberCount;i++ ) {
+      tempNum[i] =number[i];
+    }
+    return fName + " " + lName + " " + tempNum;
+  }
 
 }
 
