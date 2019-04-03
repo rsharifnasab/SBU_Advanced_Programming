@@ -17,12 +17,18 @@ public class GapList{
     String lName = sc.next();
     User temp = new User(fName,lName);
     while (sc.hasNextLong()) {
-      temp.addNum(sc.next());
+      String num = sc.next();
+      if(searchByNum(num) != -1){
+        System.out.println("joinError");
+        return false;
+      }
+      temp.addNum(num);
     }
     if(name2ind(fName,lName) != -1 ){ // users exists
       System.out.println("joinError");
       return false;
     }
+
     users[lastUser++] = temp;
     //System.err.println("user added!");
     return true;

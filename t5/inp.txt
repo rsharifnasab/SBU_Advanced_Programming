@@ -7,3 +7,20 @@ join amin bor 09134679852 684555 654599746
 join mamad mamadi 987652
 join reza nasab 7419638520
 join ali mohammady
+addContact ali alavi: mamad mamadi
+addContact ali alavi: 09134679852
+addContact ali alavi: 3
+listContacts first-name ali alavi
+remove 09134679852
+listContacts first-name ali alavi
+listUsers last-name
+block ali alavi: mamad mamadi
+listContacts first-name ali alavi
+specific ali alavi: mamad mamadi
+listContacts first-name ali alavi
+specific ali alavi: 3
+search new username
+join new username
+search new username
+listUsers last-name
+remove 1 1
