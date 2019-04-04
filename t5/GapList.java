@@ -5,6 +5,8 @@ public class GapList{
   private static  User [] users = new User[2000];
   private static int lastUser = 0;
 
+  static String sortBy;
+
   private static int name2ind(String fName,String lName){
     for (int i = 0 ; i < lastUser; i++) {
       if(users[i].getFName().equalsIgnoreCase(fName) && users[i].getLName().equalsIgnoreCase(lName)) return i;
@@ -79,7 +81,9 @@ public class GapList{
     }
     lastUser--;
     for (int i = 0 ; i < lastUser; i++) {
+      if(users[i] == null) continue;
       for (int j = 0; j < users[i].friends.length; j++) {
+        if(users[i].friends[j] == null) continue;
         if(users[i].friends[j].contact == toDel){
           for (int l = users[i].friendCount; l>j; l-- ) {
             users[i].friends[l-1] = users[i].friends[l]; //TODO-
@@ -113,15 +117,24 @@ public class GapList{
 
 
   private static void listUsers(){
-    User.sortBy = sc.next();
+    sortBy = sc.next();
+    System.err.println("listing users : "+sortBy);
 
     Arrays.sort(users, new Comparator<User>() {
     @Override
     public int compare(User o1, User o2) {
+
         if (o1 == null && o2 == null) { return 0; }
         if (o1 == null) { return 1; }
         if (o2 == null) { return -1;}
-        return o1.compareTo(o2);
+
+        if (sortBy.equals("first-name")){
+          if(o1.getFName().equalsIgnoreCase(o2.getFName())) return o1.getLName().compareTo(o2.getLName());
+          return o1.getFName().compareTo(o2.getFName());
+        }
+        if(o1.getLName().equalsIgnoreCase(o2.getLName())) return o1.getFName().compareTo(o2.getFName());
+        return o1.getLName().compareTo(o2.getLName());
+
     }});
 
     for (User u: users) {
@@ -149,7 +162,7 @@ public class GapList{
   }
 */
 class User{
-  static String sortBy;
+
   private String fName;
   private String lName;
           String[] number = new String[10];
@@ -186,20 +199,6 @@ class User{
   }
 
 
-  //@Override
-  public int compareTo(User o) {
-    System.err.println(" compareto runned!");
-    if (sortBy.equals("first-name")){
-      if(this.fName.equalsIgnoreCase(o.fName)) return this.lName>o.lName;
-      return this.fName>o.fName;
-    }
-    if(this.lName.equalsIgnoreCase(o.lName)) return this.fName>o.fName;
-    return this.lName>o.lName;
-  }
-
-
-
-
 
 }
 
@@ -211,17 +210,17 @@ class Friend{
     this.contact = contact;
   }
   public boolean isSpecial(){ return special; }
-  public boolean makeSpecial(){
+  public void makeSpecial(){
 
   }
-  public boolean makeUnSpecial(){
+  public void makeUnSpecial(){
 
   }
   public boolean isBlocked() { return blocked; }
-  public boolean block(){
+  public void block(){
 
   }
-  public boolean unBlock(){
+  public void unBlock(){
 
   }
 
