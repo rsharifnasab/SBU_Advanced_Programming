@@ -5,8 +5,6 @@ public class GapList{
   private static  User [] users = new User[2000];
   private static int lastUser = 0;
 
-  static String sortBy;
-
   private static int name2ind(String fName,String lName){
     for (int i = 0 ; i < lastUser; i++) {
       if(users[i].getFName().equalsIgnoreCase(fName) && users[i].getLName().equalsIgnoreCase(lName)) return i;
@@ -117,7 +115,7 @@ public class GapList{
 
 
   private static void listUsers(){
-    sortBy = sc.next();
+    String sortBy = sc.next();
 
     Arrays.sort(users, new Comparator<User>() {
     @Override
@@ -204,8 +202,14 @@ private static boolean unSpecial(){
   return true;
 }
 
-  public void listContacts(){
+  public static boolean listContacts(){
+    int userIndex = search();
+    if( userIndex == -1 ){
+      System.out.println("listContactsError");
+      return false;
+    }
     
+    return true;
   }
 
   public static void main(String[] args) {
@@ -220,7 +224,7 @@ private static boolean unSpecial(){
       if(order.equals("unblock")) unBlock();
       if(order.equals("specific")) special();
       if(order.equals("unspecific")) unSpecial();
-      if(order.equals("listContacts") listContacts();
+      if(order.equals("listContacts")) listContacts();
     }
   }
 }
