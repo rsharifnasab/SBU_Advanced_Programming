@@ -34,7 +34,7 @@ public class GapList{
     }
 
     users[lastUser++] = temp;
-    //System.err.println("user added!");
+    System.err.println("user added! " + lastUser + " is " + temp);
     return true;
   }
 
@@ -118,8 +118,12 @@ public class GapList{
 
   private static void listUsers(){
     sortBy = sc.next();
-    System.err.println("listing users : "+sortBy);
+    System.err.println(lastUser+" listing users : "+sortBy);
+    for (User u: users) {
+      if(u!=null) System.out.println(u);
 
+    }
+    System.out.println(" - - - ---------");
     Arrays.sort(users, new Comparator<User>() {
     @Override
     public int compare(User o1, User o2) {
