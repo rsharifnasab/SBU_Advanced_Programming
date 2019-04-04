@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class GapList{
   private static java.util.Scanner sc = new java.util.Scanner(System.in);
   private static  User [] users = new User[2000];
@@ -80,12 +82,12 @@ public class GapList{
       for (int j = 0; j < users[i].friends.length; j++) {
         if(users[i].friends[j].contact == toDel){
           for (int l = users[i].friendCount; l>j; l-- ) {
-            users[i].friends[l-1] = users.friend[l]; //TODO-
+            users[i].friends[l-1] = users[i].friends[l]; //TODO-
           }
         }
       }
     }
-
+    return true;
   }
 
   private static boolean addContact(){
@@ -112,7 +114,16 @@ public class GapList{
 
   private static void listUsers(){
     User.sortBy = sc.next();
-    Arrays.sort(users);
+
+    Arrays.sort(users, new Comparator<User>() {
+    @Override
+    public int compare(User o1, User o2) {
+        if (o1 == null && o2 == null) { return 0; }
+        if (o1 == null) { return 1; }
+        if (o2 == null) { return -1;}
+        return o1.compareTo(o2);
+    }});
+
     for (User u: users) {
       if(u!=null) System.out.println(u);
     }
@@ -138,7 +149,7 @@ public class GapList{
   }
 */
 class User{
-  private static String sortBy;
+  static String sortBy;
   private String fName;
   private String lName;
           String[] number = new String[10];
@@ -163,7 +174,7 @@ class User{
   }
 
 
-
+  @Override
   public String toString(){
     String numS = "[";
     for (int i=0;i<numberCount;i++ ) {
@@ -175,12 +186,15 @@ class User{
   }
 
 
-  @Override
+  //@Override
   public int compareTo(User o) {
-    if (sortBy.equals("first-name"){
-      if(this.fName.equals(o.fName))
+    System.err.println(" compareto runned!");
+    if (sortBy.equals("first-name")){
+      if(this.fName.equalsIgnoreCase(o.fName)) return this.lName>o.lName;
+      return this.fName>o.fName;
     }
-    return
+    if(this.lName.equalsIgnoreCase(o.lName)) return this.fName>o.fName;
+    return this.lName>o.lName;
   }
 
 
