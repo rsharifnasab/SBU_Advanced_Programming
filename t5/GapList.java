@@ -34,7 +34,7 @@ public class GapList{
     }
 
     users[lastUser++] = temp;
-    System.err.println("user added! " + lastUser + " is " + temp);
+
     return true;
   }
 
@@ -72,12 +72,12 @@ public class GapList{
   private static boolean remove(){
     int userIndex = search();
     if(userIndex == -1){
-      System.out.println("addContactError");
+      System.out.println("removeError");
       return false;
     }
     User toDel = users[userIndex];
-    for (int i = lastUser; i > userIndex; i-- ) {
-      users[i-1] = users[i];
+    for (int i = userIndex; i < lastUser; i++ ) {
+      users[i] = users[i+1];
     }
     lastUser--;
     for (int i = 0 ; i < lastUser; i++) {
@@ -85,8 +85,8 @@ public class GapList{
       for (int j = 0; j < users[i].friends.length; j++) {
         if(users[i].friends[j] == null) continue;
         if(users[i].friends[j].contact == toDel){
-          for (int l = users[i].friendCount; l>j; l-- ) {
-            users[i].friends[l-1] = users[i].friends[l]; //TODO-
+          for (int l = j; l<users[i].friendCount; l++ ) {
+            users[i].friends[l] = users[i].friends[l+1]; //TODO-
           }
         }
       }
@@ -118,12 +118,7 @@ public class GapList{
 
   private static void listUsers(){
     sortBy = sc.next();
-    System.err.println(lastUser+" listing users : "+sortBy);
-    for (User u: users) {
-      if(u!=null) System.out.println(u);
 
-    }
-    System.out.println(" - - - ---------");
     Arrays.sort(users, new Comparator<User>() {
     @Override
     public int compare(User o1, User o2) {
@@ -146,6 +141,73 @@ public class GapList{
     }
   }
 
+  private static boolean block(){
+    int userIndex = search();
+    int friendIndex = search();
+    if( userIndex == -1 || friendIndex == -1 ){
+      System.out.println("blockError");
+      return false;
+    }
+    if(users[userIndex].isFriend(users[friendIndex]) == false){
+      System.out.println("blockError");
+      return false;
+    }
+    int fIndex = users[userIndex].friend2ind(users[friendIndex]);
+    users[userIndex].friends[fIndex].block();
+    return true;
+  }
+  private static boolean unBlock(){
+    int userIndex = search();
+    int friendIndex = search();
+    if( userIndex == -1 || friendIndex == -1 ){
+      System.out.println("unblockError");
+      return false;
+    }
+    if(users[userIndex].isFriend(users[friendIndex]) == false){
+      System.out.println("unblockError");
+      return false;
+    }
+    int fIndex = users[userIndex].friend2ind(users[friendIndex]);
+    users[userIndex].friends[fIndex].unBlock();
+    return true;
+  }
+
+
+private static boolean special(){
+  int userIndex = search();
+  int friendIndex = search();
+  if( userIndex == -1 || friendIndex == -1 ){
+    System.out.println("specificError");
+    return false;
+  }
+  if(users[userIndex].isFriend(users[friendIndex]) == false){
+    System.out.println("specificError");
+    return false;
+  }
+  int fIndex = users[userIndex].friend2ind(users[friendIndex]);
+  users[userIndex].friends[fIndex].makeSpecial();
+  return true;
+}
+private static boolean unSpecial(){
+  int userIndex = search();
+  int friendIndex = search();
+  if( userIndex == -1 || friendIndex == -1 ){
+    System.out.println("unspecificError");
+    return false;
+  }
+  if(users[userIndex].isFriend(users[friendIndex]) == false){
+    System.out.println("unspecificError");
+    return false;
+  }
+  int fIndex = users[userIndex].friend2ind(users[friendIndex]);
+  users[userIndex].friends[fIndex].makeUnSpecial();
+  return true;
+}
+
+  public void listContacts(){
+    
+  }
+
   public static void main(String[] args) {
     while (sc.hasNext()) {
       String order = sc.next();
@@ -154,7 +216,11 @@ public class GapList{
       if(order.equals("addContact")) addContact();
       if(order.equals("remove")) remove();
       if(order.equals("listUsers")) listUsers();
-
+      if(order.equals("block")) block();
+      if(order.equals("unblock")) unBlock();
+      if(order.equals("specific")) special();
+      if(order.equals("unspecific")) unSpecial();
+      if(order.equals("listContacts") listContacts();
     }
   }
 }
@@ -181,6 +247,12 @@ class User{
   public String getLName(){ return lName;}
   public void addNum(String num){ this.number[numberCount++] = num; }
   public void addFriend(User friend){ this.friends[friendCount++] = new Friend(friend); }
+  public int friend2ind(User f){
+    for(int i = 0; i < friendCount; i++){
+      if(friends[i].contact == f) return i;
+    }
+    return -1;
+  }
 
   public boolean isFriend(User friend){
     for (Friend f : friends) {
@@ -189,7 +261,6 @@ class User{
     }
     return false;
   }
-
 
   @Override
   public String toString(){
@@ -215,17 +286,20 @@ class Friend{
   }
   public boolean isSpecial(){ return special; }
   public void makeSpecial(){
-
+    blocked = false;
+    special = true;
   }
   public void makeUnSpecial(){
-
+    special = false;
   }
   public boolean isBlocked() { return blocked; }
   public void block(){
-
+    special = false;
+    blocked = true;
   }
   public void unBlock(){
-
+    special = false;
+    blocked = false;
   }
 
 }
