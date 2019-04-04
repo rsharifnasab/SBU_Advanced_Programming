@@ -80,7 +80,7 @@ public class GapList{
       for (int j = 0; j < users[i].friends.length; j++) {
         if(users[i].friends[j].contact == toDel){
           for (int l = users[i].friendCount; l>j; l-- ) {
-            users[i].friends[l-1] = users.friend[l];
+            users[i].friends[l-1] = users.friend[l]; //TODO-
           }
         }
       }
@@ -109,6 +109,15 @@ public class GapList{
     return true;
   }
 
+
+  private static void listUsers(){
+    User.sortBy = sc.next();
+    Arrays.sort(users);
+    for (User u: users) {
+      if(u!=null) System.out.println(u);
+    }
+  }
+
   public static void main(String[] args) {
     while (sc.hasNext()) {
       String order = sc.next();
@@ -116,6 +125,7 @@ public class GapList{
       if(order.equals("search")) searchPrint();
       if(order.equals("addContact")) addContact();
       if(order.equals("remove")) remove();
+      if(order.equals("listUsers")) listUsers();
 
     }
   }
@@ -128,6 +138,7 @@ public class GapList{
   }
 */
 class User{
+  private static String sortBy;
   private String fName;
   private String lName;
           String[] number = new String[10];
@@ -163,13 +174,41 @@ class User{
     return fName + " " + lName + " " + numS;
   }
 
+
+  @Override
+  public int compareTo(User o) {
+    if (sortBy.equals("first-name"){
+      if(this.fName.equals(o.fName))
+    }
+    return
+  }
+
+
+
+
+
 }
 
 class Friend{
-  boolean special = false;
-  boolean blocked = false;
+  private boolean special = false;
+  private boolean blocked = false;
   User contact;
   Friend(User contact){
     this.contact = contact;
   }
+  public boolean isSpecial(){ return special; }
+  public boolean makeSpecial(){
+
+  }
+  public boolean makeUnSpecial(){
+
+  }
+  public boolean isBlocked() { return blocked; }
+  public boolean block(){
+
+  }
+  public boolean unBlock(){
+
+  }
+
 }
