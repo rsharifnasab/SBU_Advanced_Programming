@@ -114,6 +114,40 @@ public class GapList{
   }
 
 
+
+  public static boolean listContacts(){
+    String sortBy = sc.next();
+    int userIndex = search();
+    if( userIndex == -1 ){
+      System.out.println("listContactsError");
+      return false;
+    }
+
+    Arrays.sort(users[userIndex].friends, new Comparator<Friend>() {
+      @Override
+      public int compare(Friend o1, Friend o2) {
+
+          if (o1 == null && o2 == null) { return 0; }
+          if (o1 == null) { return 1; }
+          if (o2 == null) { return -1;}
+
+          if (sortBy.equals("first-name")){
+            if(o1.contact.getFName().equalsIgnoreCase(o2.contact.getFName())) return o1.contact.getLName().compareTo(o2.contact.getLName());
+            return o1.contact.getFName().compareTo(o2.contact.getFName());
+          }
+          if(o1.contact.getLName().equalsIgnoreCase(o2.contact.getLName())) return o1.contact.getFName().compareTo(o2.contact.getFName());
+          return o1.contact.getLName().compareTo(o2.contact.getLName());
+
+      }});
+
+    for (Friend f : users[userIndex].friends) {
+      if(f == null) continue;
+      System.out.println(f.contact);
+    }
+    return true;
+  }
+
+
   private static void listUsers(){
     String sortBy = sc.next();
 
@@ -202,15 +236,6 @@ private static boolean unSpecial(){
   return true;
 }
 
-  public static boolean listContacts(){
-    int userIndex = search();
-    if( userIndex == -1 ){
-      System.out.println("listContactsError");
-      return false;
-    }
-    
-    return true;
-  }
 
   public static void main(String[] args) {
     while (sc.hasNext()) {
