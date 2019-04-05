@@ -2,3 +2,34 @@ search 1150
 join Bryson Ryan
 join Bryson Ryan
 join Hunter Julian 1150 1150 
+addContact 1150: 1150
+join Bryson Ryan
+unspecific 3846276423: Theodore Charles
+addContact Theodore Charles: Theodore Charles
+search Hunter Julian
+addContact 6211446: 609997780
+block Dominic Dylan: Dominic Dylan
+block Carson Jordan: 3846276423
+remove 5438670
+addContact Theodore Charles: 609997780
+listUsers first-name
+remove 1150
+listContacts last-name 6211446
+listContacts first-name 7
+unblock Jack Sawyer: 320472
+listContacts last-name Alexander Kayden
+listContacts last-name 410
+addContact 351: Jack Sawyer
+search Samuel Adrian
+join William Gavin
+join Henry Jacob
+join Santiago James 422775347 0 
+listContacts last-name 3846276423
+listContacts last-name Jack Sawyer
+listUsers last-name
+listUsers first-name
+join Carson Jordan
+join Levi Isaiah 410 3846276423 
+addContact 0006: Lucas Aaron
+join Isaiah Parker
+addContact Jack Sawyer: 422775347
