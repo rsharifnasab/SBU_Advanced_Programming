@@ -90,8 +90,29 @@ public class GapList{
     return true;
   }
 
-  private static boolean addContact(){
-    int userIndex = search();
+
+  private static boolean isNum(String s) {
+    try {
+        Long.parseLong(s);
+    } catch(NumberFormatException e) {
+        return false;
+    } catch(NullPointerException e) {
+        return false;
+    }
+    return true;
+  }
+  private static boolean addContact(){ //TODO
+    int userIndex = -1;
+    String inp = sc.next();
+    int last = inp.length()-1;
+    inp = inp.substring(0,last); //TODO
+    if(isNum(inp)) userIndex = searchByNum(inp);
+    else{
+      String fName = inp;
+      String lName = sc.next();
+      userIndex = name2ind(fName,lName);
+    }
+
     int friendIndex = search();
 
     if(userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
@@ -249,16 +270,16 @@ private static boolean unSpecial(){
   public static void main(String[] args) {
     while (sc.hasNext()) {
       String order = sc.next();
-      if(order.equals("join")) join();
-      if(order.equals("search")) searchPrint();
-      if(order.equals("addContact")) addContact();
-      if(order.equals("remove")) remove();
-      if(order.equals("listUsers")) listUsers();
-      if(order.equals("block")) block();
-      if(order.equals("unblock")) unBlock();
-      if(order.equals("specific")) special();
-      if(order.equals("unspecific")) unSpecial();
-      if(order.equals("listContacts")) listContacts();
+      if(order.equalsIgnoreCase("join")) join();
+      if(order.equalsIgnoreCase("search")) searchPrint();
+      if(order.equalsIgnoreCase("addContact")) addContact();
+      if(order.equalsIgnoreCase("remove")) remove();
+      if(order.equalsIgnoreCase("listUsers")) listUsers();
+      if(order.equalsIgnoreCase("block")) block();
+      if(order.equalsIgnoreCase("unblock")) unBlock();
+      if(order.equalsIgnoreCase("specific")) special();
+      if(order.equalsIgnoreCase("unspecific")) unSpecial();
+      if(order.equalsIgnoreCase("listContacts")) listContacts();
     }
   }
 }

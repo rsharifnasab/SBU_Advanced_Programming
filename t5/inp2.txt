@@ -1,7 +1,7 @@
 search 1150
 join Bryson Ryan
 join Bryson Ryan
-join Hunter Julian 1150 1150 
+join Hunter Julian 1150 
 addContact 1150: 1150
 join Bryson Ryan
 unspecific 3846276423: Theodore Charles
