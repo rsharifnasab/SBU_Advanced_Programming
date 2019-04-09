@@ -101,18 +101,20 @@ public class GapList{
     }
     return true;
   }
-  private static boolean addContact(){ //TODO
-    int userIndex = -1;
-    String inp = sc.next();
-    int last = inp.length()-1;
-    inp = inp.substring(0,last); //TODO
-    if(isNum(inp)) userIndex = searchByNum(inp);
-    else{
+
+  private static int search2(){
+      String inp = sc.next();
+      int last = inp.length()-1;
+      inp = inp.substring(0,last); //TODO
+      if(isNum(inp)) return searchByNum(inp);
+
       String fName = inp;
       String lName = sc.next();
-      userIndex = name2ind(fName,lName);
-    }
+      return name2ind(fName,lName);
+  }
 
+  private static boolean addContact(){ //TODO
+    int userIndex = search2();
     int friendIndex = search();
 
     if(userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
@@ -204,7 +206,7 @@ public class GapList{
   }
 
   private static boolean block(){
-    int userIndex = search();
+    int userIndex = search2();
     int friendIndex = search();
     if( userIndex == -1 || friendIndex == -1 ){
       System.out.println("blockError");
@@ -219,7 +221,7 @@ public class GapList{
     return true;
   }
   private static boolean unBlock(){
-    int userIndex = search();
+    int userIndex = search2();
     int friendIndex = search();
     if( userIndex == -1 || friendIndex == -1 ){
       System.out.println("unblockError");
@@ -236,7 +238,7 @@ public class GapList{
 
 
 private static boolean special(){
-  int userIndex = search();
+  int userIndex = search2();
   int friendIndex = search();
   if( userIndex == -1 || friendIndex == -1 ){
     System.out.println("specificError");
@@ -251,7 +253,7 @@ private static boolean special(){
   return true;
 }
 private static boolean unSpecial(){
-  int userIndex = search();
+  int userIndex = search2();
   int friendIndex = search();
   if( userIndex == -1 || friendIndex == -1 ){
     System.out.println("unspecificError");
