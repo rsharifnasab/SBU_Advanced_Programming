@@ -104,13 +104,17 @@ public class GapList{
 
   private static int search2(){
       String inp = sc.next();
+      String inp2 = null;
       int last = inp.length()-1;
-      inp = inp.substring(0,last); //TODO
-      if(isNum(inp)) return searchByNum(inp);
-
-      String fName = inp;
-      String lName = sc.next();
-      return name2ind(fName,lName);
+      if(inp.charAt(last)==':'){
+        inp = inp.substring(0,last); //TODO
+        //if(isNum(inp))
+        return searchByNum(inp);
+      }
+      inp2 = sc.next();
+      last = inp2.length()-1;
+      inp2 = inp2.substring(0,last);
+      return name2ind(inp,inp2);
   }
 
   private static boolean addContact(){ //TODO
