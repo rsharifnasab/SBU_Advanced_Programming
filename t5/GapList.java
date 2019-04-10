@@ -71,9 +71,11 @@ public class GapList{
       return false;
     }
     User toDel = users[userIndex];
+    users[userIndex] = null;
     for (int i = userIndex; i < lastUser; i++ ) {
       users[i] = users[i+1];
     }
+    users[lastUser] = null;
     lastUser--;
     for (int i = 0 ; i < lastUser; i++) {
       //if(users[i] == null) continue;
@@ -355,7 +357,7 @@ class Friend{
     blocked = true;
   }
   public void unBlock(){
-    special = false;
+  //  special = false;
     blocked = false;
   }
 
