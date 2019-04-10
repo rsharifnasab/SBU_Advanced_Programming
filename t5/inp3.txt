@@ -1,0 +1,16 @@
+join ali alavi 
+join roozbeh shn
+addContact roozbeh shn: ali alavi
+join taghi taghavi
+addContact Roozbeh shn: taghi taghavi
+specific roozbeh shn: taghi taghavi
+join to del 123
+addContact to del: roozbeh shn
+addContact roozbeh shn: to del
+listContacts first-name roozbeh shn
+listContacts first-name 123
+remove to del
+listContacts first-name roozbeh shn
+listContacts first-name 123
+block roozbeh shn: ali alavi
+listContacts first-name roozbeh shn

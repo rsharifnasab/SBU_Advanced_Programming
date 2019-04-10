@@ -212,7 +212,7 @@ public class GapList{
   private static boolean block(){
     int userIndex = search2();
     int friendIndex = search();
-    if( userIndex == -1 || friendIndex == -1 ){
+    if( userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
       System.out.println("blockError");
       return false;
     }
@@ -227,7 +227,7 @@ public class GapList{
   private static boolean unBlock(){
     int userIndex = search2();
     int friendIndex = search();
-    if( userIndex == -1 || friendIndex == -1 ){
+    if( userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
       System.out.println("unblockError");
       return false;
     }
@@ -244,7 +244,7 @@ public class GapList{
 private static boolean special(){
   int userIndex = search2();
   int friendIndex = search();
-  if( userIndex == -1 || friendIndex == -1 ){
+  if( userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
     System.out.println("specificError");
     return false;
   }
@@ -259,7 +259,7 @@ private static boolean special(){
 private static boolean unSpecial(){
   int userIndex = search2();
   int friendIndex = search();
-  if( userIndex == -1 || friendIndex == -1 ){
+  if( userIndex == -1 || friendIndex == -1 || friendIndex == userIndex){
     System.out.println("unspecificError");
     return false;
   }
