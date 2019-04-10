@@ -37,9 +37,7 @@ public class GapList{
     for (int i = 0; i < lastUser; i++) {
       for (String n : users[i].number) {
         if(n==null) continue;
-        long l1 = Long.parseLong(n);
-        long l2 = Long.parseLong(num);
-        if(l1==l2) return i;
+        if(num.equals(n)) return i;
       }
     }
     return -1;
