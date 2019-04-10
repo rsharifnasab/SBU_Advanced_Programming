@@ -161,8 +161,8 @@ public class GapList{
           if (o1 == null) { return 1; }
           if (o2 == null) { return -1;}
 
-          if(o1.isSpecial() && !o2.isSpecial()) return 1;
-          if(!o1.isSpecial() && o2.isSpecial()) return -1;
+          if(o1.isSpecial() && !o2.isSpecial()) return -1;
+          if(!o1.isSpecial() && o2.isSpecial()) return +1;
 
           if (sortBy.equals("first-name")){
             if(o1.contact.getFName().equalsIgnoreCase(o2.contact.getFName())) return o1.contact.getLName().compareToIgnoreCase(o2.contact.getLName());
