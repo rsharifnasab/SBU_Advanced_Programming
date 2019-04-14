@@ -1,35 +1,38 @@
 #include <bits/stdc++.h>
-using namespace std;
-std :: string * db;
-
-bool check(int i,int j)
-{
-	std :: string tot = db[i] + db[j];
+int counter(std::string tot){
 	int tp = 0;
-	for (int i = 0; i < tot.size(); i++)
-	{
+	for (long i = 0; i < tot.size(); i++){
 		if(tot[i] == '(') tp++;
 		if(tot[i] == ')') tp--;		
-		if(tp<0) return false;
 	}
-	return (tp==0);
+	return (tp);
 }
 
-int main()
-{
+bool check(std::string tot){
+		int tp = 0;
+		for (long i = 0; i < tot.size(); i++){
+			if(tot[i] == '(') tp++;
+			if(tot[i] == ')') tp--;		
+			if(tp < 0) return false;
+		}
+		return (tp==0);
+}
+
+int main(){
 	int n;
 	std :: cin >> n;
-	db = new std :: string[n];
-	
-	for(int i = 0; i < n; i++) 
+	int* cal = new int[n];
+	std::string* db = new std::string[n];
+	for(int i = 0; i < n; i++){
 		std :: cin >> db[i];
-
+		cal[i] = counter(db[i]);
+	}
 	int ans = 0;
-	for(int i = 0; i < n; i++)
-	{
-		for(int j=0; j < n; j++)
-		{
-			ans+=check(i,j);
+	for(int i = 0; i < n; i++){
+		for(int j=0; j < n; j++){
+			if ( (cal[i]+cal[j])==0){
+				ans+=(check(db[i]+db[j]));
+			}
 		}
 	}
 	std::cout << ans << "\n";
