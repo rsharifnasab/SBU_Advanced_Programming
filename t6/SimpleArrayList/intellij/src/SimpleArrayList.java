@@ -38,10 +38,10 @@ public class SimpleArrayList {
     } //TODO
 
     public boolean addAll(Integer...elements){
-        boolean state = false;
+        boolean state = true;
         for(Integer i : elements)
-            state = state & add(i);
-        return state;
+            if(add(i) == false) ; //return false;
+        return true;
     }
 
     public Integer get(int i){
@@ -52,11 +52,16 @@ public class SimpleArrayList {
 
     public Integer set(int index,Integer value){
         if(index >= size() || index < 0) throw new IndexOutOfBoundsException();
-        return db[index] = value; //TODO
+        if ( value == null ) throw new NullPointerException();
+        Integer ans = db[index];
+        db[index] = value; //TODO
+        return ans;
+
     }
 
     public Integer remove(int index){
         Integer ans = db[index];
+        if (ans == null) throw new IndexOutOfBoundsException();
         for(int i = index; i < size; i++)
             db[i] = db [i+1];
         size--;
