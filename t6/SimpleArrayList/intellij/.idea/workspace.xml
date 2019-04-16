@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74a9b51a-b854-408a-be17-5ae71709e9cb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/SimpleArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleArrayList.java" afterDir="false" />
-    </list>
+    <list default="true" id="74a9b51a-b854-408a-be17-5ae71709e9cb" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,10 +14,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SimpleArrayList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
+            <state relative-caret-position="468">
               <caret line="63" column="60" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
               <folding>
                 <element signature="e#211#212#0" expanded="true" />
@@ -31,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SimpleArrayListTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="190" column="42" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="42" />
+            <state relative-caret-position="292">
+              <caret line="139" selection-start-line="139" selection-end-line="139" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,8 +56,8 @@
       <find>catch</find>
       <find>ran!</find>
       <find>addA</find>
-      <find>remove</find>
       <find>set</find>
+      <find>remove</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,7 +111,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555354164808" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555354777971" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
@@ -198,14 +196,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1555345360257</updated>
-      <workItem from="1555345363472" duration="7701000" />
+      <workItem from="1555345363472" duration="8909000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SimpleArrayListTest_addWithIndexTest - 2019.04.15 at 23h 00m 15s.xml">
-      <configuration name="SimpleArrayListTest.addWithIndexTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="SimpleArrayListTest_addWithIndexTest - 2019.04.15 at 23h 10m 38s.xml">
       <configuration name="SimpleArrayListTest.addWithIndexTest" configurationId="JUnit" />
     </history-entry>
@@ -233,9 +228,12 @@
     <history-entry file="SimpleArrayListTest - 2019.04.15 at 23h 19m 11s.xml">
       <configuration name="SimpleArrayListTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="SimpleArrayListTest - 2019.04.15 at 23h 19m 26s.xml">
+      <configuration name="SimpleArrayListTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7701000" />
+    <option name="totallyTimeSpent" value="8909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1023" extended-state="6" />
@@ -276,25 +274,25 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/SimpleArrayListTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="190" column="42" selection-start-line="190" selection-start-column="17" selection-end-line="190" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SimpleArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="468">
           <caret line="63" column="60" selection-start-line="63" selection-start-column="60" selection-end-line="63" selection-end-column="60" />
           <folding>
             <element signature="e#211#212#0" expanded="true" />
             <element signature="e#238#239#0" expanded="true" />
             <element signature="e#124#125#0" expanded="true" />
             <element signature="e#142#143#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SimpleArrayListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
