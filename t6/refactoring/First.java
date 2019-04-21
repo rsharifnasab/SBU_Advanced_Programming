@@ -8,13 +8,14 @@
 //8 magic number    3 changed max number of tries changed to maxTries
 //9 long method :  mathod fail extracted
 //10 bad_name  method f changed to loginCheck
+//11 bad_condition_in_loop   changed condition with return and else for better code understanding
+//12 bad_use_of_do-while   do-while changed to for
 import java.util.Scanner;
 
 public class First {
 
     final static String value1 = "value1";
     final static String value2 = "value2";
-    final static int maxTries = 4;
 
     private static void fail() throws Exception{
       System.out.println("misuse");
@@ -22,15 +23,13 @@ public class First {
     }
 
     private static void stringGet(String toGet,Scanner myScanner) throws Exception{
-      String input;
-      int counter = 0;
-      do{
-        input = myScanner.next();
+      final int maxTries = 4;
+      for (int i = 0;i < maxTries ;i++ ) {
+        String input = myScanner.next();
         if (!input.equals(toGet))
             System.out.println("invalid");
         else return;
-        counter++;
-      } while(counter < maxTries);
+      }
       fail();
     }
 
@@ -46,5 +45,4 @@ public class First {
             loginCheck(myScanner);
         } catch (Exception e) {}
     }
-
 }
