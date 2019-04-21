@@ -1,24 +1,22 @@
-//5
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Scanner;
-
+// many_imports  all imports changeds to java.util.*
+// bad_name Scanner s changed to myScanner
+// bad_name  inputNumber changed to songsCount
+import java.util.*;
 
 public class Second {
 
     public static void main(String[] args) {
         Song.reset();
-        Scanner s = new Scanner(System.in);
-        int inputNumber = s.nextInt();
-        Song[] songs = new Song[inputNumber];
+        Scanner myScanner = new Scanner(System.in);
+        int songsCount = myScanner.nextInt();
+        Song[] songs = new Song[songsCount];
         for (int i = 0; i < songs.length; i++) {
             Song song = new Song();
-            song.songType = SongType.valueOf(s.next().toUpperCase());
-            song.name = s.next();
-            song.artist = s.next();
-            song.lengthInSeconds = s.nextInt();
-            song.numberOfDownloads = s.nextInt();
+            song.songType = SongType.valueOf(myScanner.next().toUpperCase());
+            song.name = myScanner.next();
+            song.artist = myScanner.next();
+            song.lengthInSeconds = myScanner.nextInt();
+            song.numberOfDownloads = myScanner.nextInt();
             songs[i] = song;
         }
         Song.distinct(songs);

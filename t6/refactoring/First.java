@@ -1,12 +1,12 @@
-//1  unoptomized_imports   remove java.util before declearing scanner
+//1 unoptomized_imports   remove java.util before declearing scanner
 //2 bad_name    u and p are not suitable names, rename to good names: value1,value2
 //3 bad name    scanner s is not a good name, changed to myScanner
 //4  final variables are not final     string values changed to final
-//5  duplicate coed    extracted method stringGet for removing duplicate code
+//5  duplicate code    extracted method stringGet for removing duplicate code
 //6 bad_name  changed a,b name to: input
-//7 bad_name  changed c int  to counter for better code understanding
+//7 bad_name  changed c int to for counter(i) for better code understanding
 //8 magic number    3 changed max number of tries changed to maxTries
-//9 long method :  mathod fail extracted
+//9 code with good name :  mathod fail extracted
 //10 bad_name  method f changed to loginCheck
 //11 bad_condition_in_loop   changed condition with return and else for better code understanding
 //12 bad_use_of_do-while   do-while changed to for
