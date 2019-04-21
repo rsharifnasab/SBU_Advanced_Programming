@@ -1,6 +1,5 @@
-//5
 //1  unoptomized_imports   remove java.util before declearing scanner
-//2 bad_name    u and p are not suitable names, rename to good names: testValue1,testValue2
+//2 bad_name    u and p are not suitable names, rename to good names: value1,value2
 //3 bad name    scanner s is not a good name, changed to myScanner
 //4  final variables are not final     string values changed to final
 //5  duplicate coed    extracted method stringGet for removing duplicate code
@@ -13,9 +12,9 @@ import java.util.Scanner;
 
 public class First {
 
-    final static String testValue1 = "value1";
-    final static String testValue2 = "value2";
-    final static int maxTries = 3;
+    final static String value1 = "value1";
+    final static String value2 = "value2";
+    final static int maxTries = 4;
 
     private static void fail() throws Exception{
       System.out.println("misuse");
@@ -29,14 +28,15 @@ public class First {
         input = myScanner.next();
         if (!input.equals(toGet))
             System.out.println("invalid");
-      } while(!input.equals(toGet) && ++counter <= maxTries);
-      if (counter > maxTries) fail();
+        else return;
+        counter++;
+      } while(counter < maxTries);
+      fail();
     }
 
     public static void loginCheck(Scanner myScanner) throws Exception {
-
-      stringGet(testValue1,myScanner);
-      stringGet(testValue2,myScanner);
+      stringGet(value1,myScanner);
+      stringGet(value2,myScanner);
       System.out.println("Hello");
     }
 
