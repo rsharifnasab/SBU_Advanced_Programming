@@ -53,7 +53,7 @@ class Song {
       song.artist = myScanner.next();
       song.lengthInSeconds = myScanner.nextInt();
       song.numberOfDownloads = myScanner.nextInt();
-      
+
       return song;
     }
 
@@ -85,7 +85,6 @@ class POP extends Song{
   @Override
   protected void songDistinct(){
       super.songDistinct();
-      numberOfDownloads += 10;
       artist += "Aliakbari.com";
       name += "Sadegh";
       if (lengthInSeconds > 300)
