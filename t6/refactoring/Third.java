@@ -1,6 +1,5 @@
-//4
-import java.util.ArrayList;
-import java.util.Scanner;
+//1 unoptimized_imports imports changed to java.util.*
+import java.util.*;
 
 public class Third {
 
@@ -134,4 +133,3 @@ class Music {
     }
 
 }
-
