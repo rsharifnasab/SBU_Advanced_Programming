@@ -1,6 +1,6 @@
 public class SimpleArrayList {
     private Integer[] db = null;
-    private final int MAX_SIZE = 110;
+    private final int MAX_SIZE = 1101;
     private int size = 0;
 
 
@@ -28,19 +28,26 @@ public class SimpleArrayList {
 
     public void add(int index,Integer toAdd ){
         if(toAdd == null) throw new NullPointerException();
-        if(size() >= MAX_SIZE || index>= MAX_SIZE || index>=size || index < 0) throw new IndexOutOfBoundsException();
+        if(size() >= MAX_SIZE || index>= MAX_SIZE  || index > size()|| index < 0) throw new IndexOutOfBoundsException("salam");
 
-        for(int i = index; i < size ; i++)
-            db[i+1] =  db[i];
+        for(int i = size; i > index; i--)
+            db[i] = db [i-1];
+
         db[index] = toAdd;
         size++;
 
     } //TODO
 
     public boolean addAll(Integer...elements){
-        boolean state = true;
-        for(Integer i : elements)
-            if(add(i) == false) ; //return false;
+        System.err.println("max size:" + MAX_SIZE + " - -  size :" + size() + "  + length : " + elements.length);
+        for(Integer i : elements) {
+            if (i == null) throw new NullPointerException();
+        }
+
+        if(MAX_SIZE < (size() + elements.length) ) return false;
+        for(Integer i : elements) {
+            if (add(i) == false) return false;
+        }
         return true;
     }
 
