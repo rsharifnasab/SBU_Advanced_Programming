@@ -1,34 +1,65 @@
 //1 unoptimized_imports imports changed to java.util.*
+//2 not_boxing boxed lower and higher bound into a class
+//3 duplicate_code  method extract get bound from user
+//4 feature_envy removed 3 print methods and moved to Musics class
+//5 nested if    moved result counter condition to for contidion
+
 import java.util.*;
 
 public class Third {
 
-    public static void printNewestMusics(int maxResultCount, int yearLowerBound, int yearUpperBound) {
-        String operation = "newest";
-        Musics.showResults(maxResultCount, yearLowerBound, yearUpperBound, operation);
-    }
-
-    public static void printMostDownloadedMusics(int maxResultCount, int downloadLowerBound, int downloadUpperBound) {
-        String operation = "mostDownloaded";
-        Musics.showResults(maxResultCount, downloadLowerBound, downloadUpperBound, operation);
-    }
-
-    public static void printTopMusicsOfWeek(int maxResultCount, int likeLowerBound, int likeUpperBound) {
-        String operation = "top";
-        Musics.showResults(maxResultCount, likeLowerBound, likeUpperBound, operation);
+    public static Bound getBoundFromUser(Scanner scanner){
+      int lower = scanner.nextInt();
+      int higher = scanner.nextInt();
+      Bound out = new Bound(lower,higher);
+      return out;
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int maxResultCount = scanner.nextInt();
-        int yearLowerBound = scanner.nextInt(), yearUpperBound = scanner.nextInt();
-        int downloadLowerBound = scanner.nextInt(), downloadUpperBound = scanner.nextInt();
-        int likeLowerBound = scanner.nextInt(), likeUpperBound = scanner.nextInt();
-        printNewestMusics(maxResultCount, yearLowerBound, yearUpperBound);
-        printMostDownloadedMusics(maxResultCount, downloadLowerBound, downloadUpperBound);
-        printTopMusicsOfWeek(maxResultCount, likeLowerBound, likeUpperBound);
+        Bound yearBound = getBoundFromUser(scanner);
+        Bound downloadBound = getBoundFromUser(scanner);
+        Bound likeBound = getBoundFromUser(scanner);
+
+        Musics.showResults(new Newest(),yearBound,maxResultCount);
+        Musics.showResults(new mostDownloaded(),downloadBound,maxResultCount);
+        Musics.showResults(new Top(),likeBound,maxResultCount);
     }
 
+}
+
+class Bound{
+  public int lower,higher;
+  Bound(int lower,int higher){
+    this.lower = lower;
+    this.higher = higher;
+  }
+}
+
+abstract class Operation{
+  public abstract boolean check(Music music,Bound bound);
+}
+
+class Newest extends Operation{
+  public boolean check(Music music,Bound bound){
+    return bound.lower <= music.getYear() && music.getYear() <= bound.higher;
+  }
+  public String toString() { return "newest"; }
+}
+
+class mostDownloaded extends Operation{
+  public boolean check(Music music,Bound bound){
+    return bound.lower <= music.getNumberOfDownloads() && music.getNumberOfDownloads() <= bound.higher;
+  }
+  public String toString() { return "mostDownloaded"; }
+}
+
+class Top extends Operation{
+  public boolean check(Music music,Bound bound){
+    return bound.lower <= music.getNumberOfLikes() && music.getNumberOfLikes() <= bound.higher;
+  }
+  public String toString() { return "top"; }
 }
 
 class Musics {
@@ -40,46 +71,16 @@ class Musics {
         allMusics = musics;
     }
 
-    public static int showResults(int maxResultCount, int pivotLowerBound, int pivotUpperBound, String operationType) {
+    public static int showResults(Operation operationType, Bound pivotBound, int maxResultCount) {
         ArrayList<Music> results = new ArrayList<>();
         int resultCounter = 0;
-        switch (operationType) {
-            case "newest": {
-                for (int i = 0; i < allMusics.size(); i++) {
-                    if (resultCounter < maxResultCount) {
-                        if (pivotLowerBound <= allMusics.get(i).getYear() && allMusics.get(i).getYear() <= pivotUpperBound) {
-                            results.add(allMusics.get(i));
-                            resultCounter++;
-                        }
-                    } else
-                        break;
-                }
-                break;
-            }
-            case "mostDownloaded": {
-                for (int i = 0; i < allMusics.size(); i++) {
-                    if (resultCounter < maxResultCount) {
-                        if (pivotLowerBound <= allMusics.get(i).getNumberOfDownloads() && allMusics.get(i).getNumberOfDownloads() <= pivotUpperBound) {
-                            results.add(allMusics.get(i));
-                            resultCounter++;
-                        }
-                    } else
-                        break;
-                }
-                break;
-            }
-            case "top": {
-                for (int i = 0; i < allMusics.size(); i++) {
-                    if (resultCounter < maxResultCount) {
-                        if (pivotLowerBound <= allMusics.get(i).getNumberOfLikes() && allMusics.get(i).getNumberOfLikes() <= pivotUpperBound) {
-                            results.add(allMusics.get(i));
-                            resultCounter++;
-                        }
-                    } else
-                        break;
-                }
-            }
+        for (int i = 0; i < allMusics.size() && resultCounter < maxResultCount; i++) {
+            if ( operationType.check(allMusics.get(i),pivotBound) ){
+              results.add(allMusics.get(i));
+              resultCounter++;
+          }
         }
+
         System.out.print(operationType + "  ");
         for (int i = 0; i < results.size(); i++)
             System.out.print((i + 1) + "- " + results.get(i).getName() + results.get(i).getYear() + "  ");
