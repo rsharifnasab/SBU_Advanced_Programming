@@ -3,6 +3,8 @@
 //3 duplicate_code  method extract get bound from user
 //4 feature_envy removed 3 print methods and moved to Musics class
 //5 nested if    moved result counter condition to for contidion
+//6 many condition with duplicate code  changed switch case to poly morphism
+//7 bad use of operation String  -- operation string changed to toString in polymorphism
 
 import java.util.*;
 
