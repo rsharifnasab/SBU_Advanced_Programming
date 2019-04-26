@@ -1,10 +1,7 @@
-//1 unoptimized_imports imports changed to java.util.*
-//2 not_boxing boxed lower and higher bound into a class
-//3 duplicate_code  method extract get bound from user
-//4 feature_envy removed 3 print methods and moved to Musics class
-//5 nested if    moved result counter condition to for contidion
-//6 many condition with duplicate code  changed switch case to poly morphism
-//7 bad use of operation String  -- operation string changed to toString in polymorphism
+//1 many_parametrs_passed_to_method Introsuce parameter Object and changed method signature
+//2 feature_envy moved method
+//3 duplicate_code  method extract
+//4 duplicate_code   polymorphism instead of conditional
 
 import java.util.*;
 

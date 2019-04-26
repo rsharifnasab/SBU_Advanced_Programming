@@ -1,10 +1,11 @@
-//1 many_imports  all imports changeds to java.util.*
-//2 bad_name Scanner s changed to myScanner
-//3 bad_name  inputNumber changed to songsCount
-//4 replace_condition_with_polymorphism changed toString conditions to polymorphism
-//5 replace_condition_with_polymorphism  changed distinct conditions to polymorphism
-//6 easier_to_read_code change for i in distinct to for each
-//7 long_method  method_extract getSongFromUser from main
+//1 bad_name rename
+//2 long method     method extract
+//3 duplicate code    push up
+//4 duplicate code   replace polymorphism with conditional
+//5 feature envy  move method
+
+
+
 import java.util.*;
 
 public class Second {
