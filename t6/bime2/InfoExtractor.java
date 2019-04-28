@@ -5,7 +5,6 @@ public class InfoExtractor{
         max = mmax;
     }
 
-
     private static void checkList(List<Person> people) throws RuntimeException{
         if(people == null) throw new EmptyInputException();
         if(people.isEmpty()) throw new EmptyInputException();
