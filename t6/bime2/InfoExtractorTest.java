@@ -198,10 +198,15 @@ public class InfoExtractorTest {
     @Test
     public void sortOnSuccess() {
         List<Employee> l = InfoExtractor.sortOnSuccess(list);
-        
+
+        assertEquals(l.get(0).getName(),"taghi");
+        assertEquals(l.get(1).getName(),"ali");
+        assertEquals(l.get(2).getName(),"Saeed");
     }
 
     @Test
     public void getRichestSorted() {
+        List<Person> l = InfoExtractor.getRichestSorted(list);
+        assertEquals(l.get(0).getName(),"Saeed");
     }
 }
