@@ -5,9 +5,6 @@ public class InfoExtractor{
         max = mmax;
     }
 
-    public static void main(String[] args) {
-        System.out.println("salam");
-    }
 
     private static void checkList(List<Person> people) throws RuntimeException{
         if(people == null) throw new EmptyInputException();
@@ -111,6 +108,7 @@ public class InfoExtractor{
         return (double) sum/people.size();
     }
     public static List<Person> getRichestSorted(List<Person> people){
+        checkList(people);
         Double moneyAver = averMoney(people);
         Double payAver = averPay(people);
 
