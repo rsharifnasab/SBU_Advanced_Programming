@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="20ef7655-8f80-44d2-84d9-65f284db1ae0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../OPP/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../OPP/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SimpleArrayList/intellij/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SimpleArrayList/intellij/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InfoExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/InfoExtractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bime2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/bime2.zip" afterDir="false" />
-    </list>
+    <list default="true" id="20ef7655-8f80-44d2-84d9-65f284db1ae0" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +32,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/InfoExtractorTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
+            <state relative-caret-position="572">
               <caret line="209" column="28" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -117,7 +112,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556479570089" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556479582926" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -178,7 +173,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1556475012942</updated>
-      <workItem from="1556475015522" duration="4553000" />
+      <workItem from="1556475015522" duration="4623000" />
     </task>
     <servers />
   </component>
@@ -215,7 +210,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4553000" />
+    <option name="totallyTimeSpent" value="4623000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2560" height="1023" extended-state="6" />
@@ -235,7 +230,7 @@
       <window_info anchor="bottom" id="Messages" weight="0.3293556" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3293556" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3293556" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -275,7 +270,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/InfoExtractorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
+        <state relative-caret-position="572">
           <caret line="209" column="28" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
