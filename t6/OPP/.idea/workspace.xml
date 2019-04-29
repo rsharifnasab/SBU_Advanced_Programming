@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="47e66149-6898-487d-809f-c9e1a1b03601" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SimpleArrayList/intellij/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SimpleArrayList/intellij/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bime2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../bime2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bime2/InfoExtractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../bime2/InfoExtractorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../bime2/bime2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/../bime2/bime2.zip" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +46,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1602" />
     <option name="height" value="886" />
   </component>
@@ -78,7 +76,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556479570074" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556482370195" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -130,7 +128,7 @@
     <option name="totallyTimeSpent" value="2824000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2560" height="1023" extended-state="7" />
+    <frame x="0" y="0" width="2560" height="1023" extended-state="6" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
