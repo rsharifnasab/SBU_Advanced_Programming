@@ -4,8 +4,9 @@ import java.util.Comparator;
 public class Test {
     public static void main(String[] args) {
         GenericLinkedList<Integer> list = new GenericLinkedList<>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++){
             list.add(i);
+        }
         System.out.println(list.contains(1)); // true
         System.out.println(list.get(2)); // 2
         System.out.println(list.remove(1.2)); // false
