@@ -152,10 +152,19 @@ public class GenericLinkedList<T> implements Iterable<T> {
     size++;
   }
 
+  public int indexOf(Object element) {
+    nullCheck(element);
+    Node<T> head = first;
+    for (int i=0;i<size;i++ ) { //TODO
+      if(head.value.equals(element)) return i;
+      head = head.next;
+    }
+    return -1;
+  }
 
   public boolean remove(Object o) {
-    nullCheck(element);
-    int index = indexOf(element);
+    nullCheck(o);
+    int index = indexOf(o);
     if(index == -1) return false;
     removeIndex(index);
     return true;
@@ -174,7 +183,7 @@ public class GenericLinkedList<T> implements Iterable<T> {
 
   public void clear() {
     size = 0;
-    first = null
+    first = null;
   }
 
   public T get(int index) {
@@ -182,6 +191,16 @@ public class GenericLinkedList<T> implements Iterable<T> {
     Node<T> head = indexToNode(index);
     return (T) head.value;
   }
+
+  private Node<T> indexToNode(int index){
+    indexCheck(index);
+    Node<T> head = first;
+    for (int i=0;i<index;i++ ) {
+      head = head.next;
+    }
+    return head;
+  }
+
 
   private void indexCheck(int index) throws IndexOutOfBoundsException{
     if(index>=this.size || index<0) throw new IndexOutOfBoundsException();
