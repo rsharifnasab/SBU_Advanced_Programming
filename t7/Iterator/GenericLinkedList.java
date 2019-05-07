@@ -13,10 +13,11 @@ enum Operation {
 class GenericListIterator<T> implements ListIterator<T> {
   private final GenericLinkedList<T> innerList;
   private boolean valid;
-
+  int index;
   public GenericListIterator(GenericLinkedList<T> innerList) {
     this.innerList = innerList;
     valid = true;
+    index = 0;
 
     // TODO
   }
@@ -30,15 +31,19 @@ class GenericListIterator<T> implements ListIterator<T> {
     if (!valid)
     throw new ConcurrentModificationException();
 
-    // TODO
+    if (index+1 < innerList.size() ) return true;
+    return false;
   }
 
   @Override
   public T next() {
     if (!valid)
     throw new ConcurrentModificationException();
-
-    // TODO
+    if (hasNext() == false)
+    throw new NoSuchElementException();
+    index++;
+    Node<T> head = innerList.indexToNode(index);
+    return head.value;
   }
 
   @Override
@@ -46,31 +51,33 @@ class GenericListIterator<T> implements ListIterator<T> {
     if (!valid)
     throw new ConcurrentModificationException();
 
-    // TODO
+    if(index > 0) return true;
+    return false;
   }
 
   @Override
   public T previous() {
     if (!valid)
-    throw new ConcurrentModificationException();
-
-    // TODO
+      throw new ConcurrentModificationException();
+    if (hasPrevious() == false)
+      throw new NoSuchElementException();
+    index--;
+    Node<T> head = innerList.indexToNode(index);
+    return head.value;
   }
 
   @Override
   public int nextIndex() {
     if (!valid)
     throw new ConcurrentModificationException();
-
-    // TODO
+    return index+1;
   }
 
   @Override
   public int previousIndex() {
     if (!valid)
     throw new ConcurrentModificationException();
-
-    // TODO
+    return index -1;
   }
 
   @Override
@@ -192,7 +199,7 @@ public class GenericLinkedList<T> implements Iterable<T> {
     return (T) head.value;
   }
 
-  private Node<T> indexToNode(int index){
+  Node<T> indexToNode(int index){
     indexCheck(index);
     Node<T> head = first;
     for (int i=0;i<index;i++ ) {
