@@ -23,7 +23,12 @@ public class GenericLinkedList<T> {
     }
 
     public T[] toArray() {
-        // TODO
+        T[] arr = new T[size];
+        Node<T> head = first;
+        for (int i=0;i<size;i++ ) {
+          arr[i] = head.value;
+          head = head.next;
+        }
     }
 
     public void add(T element) {
@@ -36,11 +41,11 @@ public class GenericLinkedList<T> {
         if(index == size) add(element);
         nullCheck(element);
         indexCheck(index);
-
+        //TODO
         size++;
     }
 
-
+// TODO
     public boolean remove(Object element) {
       nullCheck(element);
       int index = indexOf(element);
