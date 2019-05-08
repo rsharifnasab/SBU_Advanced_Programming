@@ -15,11 +15,12 @@ public class Url{
   }
 
   public static Boolean addValue2Index(String value,Integer index){
-    for (int i = 0;i < lastKey; i++ ) {
+    for (int i = 0;i < valueCount[index]; i++ ) {
       if(value == null ) System.err.println("va;ue is null");
       if(values[index] == null ) System.err.println("va;ue is null");
       if(value.equals(values[index][i])) return false;
     }
+    
     //if(valueCount[index] == null ) System.err.println("value count[iindex] is null");
     values[index][valueCount[index]++] = value;
     return true;
