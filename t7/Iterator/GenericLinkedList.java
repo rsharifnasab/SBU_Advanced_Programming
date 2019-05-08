@@ -12,23 +12,28 @@ enum Operation {
 
 class GenericListIterator<T> implements ListIterator<T> {
   private final GenericLinkedList<T> innerList;
-  private boolean valid;
+
   int index;
+  int firstSize;
+  private boolean ls;
   public GenericListIterator(GenericLinkedList<T> innerList) {
     this.innerList = innerList;
-    valid = true;
-    index = 0;
-
-    // TODO
+    index = -1;
+    firstSize = innerList.size();
+    ls = true;
   }
 
   public void setValid(boolean valid) {
-    this.valid = valid;
+    if(valid) firstSize = innerList.size();
+    else firstSize = -1;
+  }
+  public boolean valid(){
+    return innerList.size() == firstSize;
   }
 
   @Override
   public boolean hasNext() {
-    if (!valid)
+    if (!valid())
     throw new ConcurrentModificationException();
 
     if (index+1 < innerList.size() ) return true;
@@ -37,10 +42,11 @@ class GenericListIterator<T> implements ListIterator<T> {
 
   @Override
   public T next() {
-    if (!valid)
+    if (!valid())
     throw new ConcurrentModificationException();
     if (hasNext() == false)
     throw new NoSuchElementException();
+    ls = true;
     index++;
     Node<T> head = innerList.indexToNode(index);
     return head.value;
@@ -48,7 +54,7 @@ class GenericListIterator<T> implements ListIterator<T> {
 
   @Override
   public boolean hasPrevious() {
-    if (!valid)
+    if (!valid())
     throw new ConcurrentModificationException();
 
     if(index > 0) return true;
@@ -57,10 +63,11 @@ class GenericListIterator<T> implements ListIterator<T> {
 
   @Override
   public T previous() {
-    if (!valid)
+    if (!valid())
       throw new ConcurrentModificationException();
     if (hasPrevious() == false)
       throw new NoSuchElementException();
+    ls = true;
     index--;
     Node<T> head = innerList.indexToNode(index);
     return head.value;
@@ -68,24 +75,24 @@ class GenericListIterator<T> implements ListIterator<T> {
 
   @Override
   public int nextIndex() {
-    if (!valid)
+    if (!valid())
     throw new ConcurrentModificationException();
     return index+1;
   }
 
   @Override
   public int previousIndex() {
-    if (!valid)
+    if (!valid())
     throw new ConcurrentModificationException();
     return index -1;
   }
 
   @Override
   public void remove() {
-    if (!valid)
+    if (!valid())
     throw new ConcurrentModificationException();
-
-    // TODO
+    if(ls == false) throw new IllegalStateException();
+    innerList.removeIndex(index);
   }
 
   @Override
@@ -103,6 +110,7 @@ public class GenericLinkedList<T> implements Iterable<T> {
   private Node<T> first = null;
   private Node<T> last = null;
   private int size = 0;
+
   private List<GenericListIterator<T>> currentIterators;
 
   public GenericLinkedList() {
@@ -157,6 +165,8 @@ public class GenericLinkedList<T> implements Iterable<T> {
     }
     this.last = n;
     size++;
+
+
   }
 
   public int indexOf(Object element) {
@@ -185,11 +195,13 @@ public class GenericLinkedList<T> implements Iterable<T> {
     before.next = before.next.next;
     if(index != size-1) before.next.pre = before;
     size--;
+
     return true;
   }
 
   public void clear() {
     size = 0;
+
     first = null;
   }
 
