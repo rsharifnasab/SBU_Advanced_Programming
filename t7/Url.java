@@ -20,12 +20,10 @@ public class Url{
       if(values[index] == null ) System.err.println("va;ue is null");
       if(value.equals(values[index][i])) return false;
     }
-    
-    //if(valueCount[index] == null ) System.err.println("value count[iindex] is null");
+
     values[index][valueCount[index]++] = value;
     return true;
   }
-
 
   public static String printKey(int index){
     String key = keys[index];
@@ -45,7 +43,6 @@ public class Url{
   }
 
   public static void main(String[] args) {
-
     keys = new String[MAX];
     values = new String[MAX][MAX];
     valueCount = new int[MAX];
@@ -57,15 +54,14 @@ public class Url{
     Matcher matcher = pattern.matcher(input);
 
     while (matcher.find()) {
-        String tempKey = matcher.group(1);
-        String tempValue = matcher.group(2);
-        //System.out.println(" key : "+ tempKey + " || value : " + tempValue);
-        Integer index = key2Index(tempKey);
-        if(index == -1) {
-          keys[lastKey] = tempKey;
-          addValue2Index(tempValue,lastKey++);
-        }
-        else addValue2Index(tempValue,index);
+      String tempKey = matcher.group(1);
+      String tempValue = matcher.group(2);
+      Integer index = key2Index(tempKey);
+      if(index == -1) {
+        keys[lastKey] = tempKey;
+        addValue2Index(tempValue,lastKey++);
+      }
+      else addValue2Index(tempValue,index);
     }
     String ans = ("{");
     for (int i =0;i  < MAX ;i++ ) {
@@ -74,7 +70,5 @@ public class Url{
     }
     ans = ans.substring(0,ans.length()-3) + "}";
     System.out.println(ans);
-
-}
-
+  }
 }
