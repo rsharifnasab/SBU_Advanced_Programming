@@ -51,7 +51,8 @@ public class Url{
 
     Scanner scanner = new Scanner(System.in);
     String input = scanner.nextLine();
-    final Pattern pattern = Pattern.compile("(\\w+)=?([^&]+)?");
+    Pattern pattern = Pattern.compile("(\\w+)=?([^&]+)?");
+    pattern = Pattern.compile("(\\w+)=?([^&]+)?");
     Matcher matcher = pattern.matcher(input);
 
     while (matcher.find()) {
