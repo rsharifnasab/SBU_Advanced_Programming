@@ -13,14 +13,12 @@ enum Operation {
 class GenericListIterator<T> implements ListIterator<T> {
   private final GenericLinkedList<T> innerList;
   Operation oper = Operation.None;
-  int index;
+  public int index;
   int firstSize;
-  private boolean ls;
   public GenericListIterator(GenericLinkedList<T> innerList) {
     this.innerList = innerList;
     index = 0;
     firstSize = innerList.size();
-    ls = true;
   }
 
   public void setValid(boolean valid) {
@@ -89,6 +87,8 @@ class GenericListIterator<T> implements ListIterator<T> {
   public void remove() {
     if (!valid())
     throw new ConcurrentModificationException();
+
+    System.out.println("case is"+oper);
     switch (oper) {
           case None:
             throw new IllegalStateException();
@@ -97,11 +97,11 @@ class GenericListIterator<T> implements ListIterator<T> {
             innerList.removeIndex(index-1);
             break;
           case Prev:
-            innerList.removeIndex(index-1);
+            innerList.removeIndex(index-2); //TODO
             break;
     }
     oper = Operation.None;
-    firstSize = innerList.size();
+    firstSize = innerList.size(); //make it vald again
   }
 
   @Override

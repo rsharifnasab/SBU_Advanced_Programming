@@ -3,7 +3,7 @@ import java.util.ListIterator;
 
 public class Test {
     public static void main(String[] args) {
-
+/*
       GenericLinkedList<Integer> ml = new GenericLinkedList<>();
       ml.add(0);
       ml.add(1);
@@ -18,10 +18,16 @@ public class Test {
       }
       for (;it.hasPrevious() ;ii-- ) {
         System.out.println(ii + " : ");
-        System.out.println(it.previous());
+        for (Integer in : ml ) {
+          System.out.print(in+" ");
+        }
+        System.out.println();
+        it.remove();
+        it.next();
+        it.previous();
 
       }
-
+*/
         GenericLinkedList<Integer> list = new GenericLinkedList<>();
         for (int i = 0; i < 3; i++)
             list.add(i);
@@ -70,5 +76,16 @@ public class Test {
         for (Integer value : list)
             System.out.print(value + " ");
         System.out.println(); // 1 3 5 7 9
+         // 1 3 5 7 9 // values
+         // 0 1 2 3 4 // indexes
+         //0 1 2 3 4 5 // iterator
+        for(;iterator.hasNext();) System.out.println(iterator.next());
+        System.out.println("before test, index is "+ iterator.nextIndex());
+
+        System.out.println(iterator.previous());
+        System.out.println("iter prev ok");
+        iterator.remove();
+        for (Integer value : list)
+            System.out.print(value + " ");
     }
 }
