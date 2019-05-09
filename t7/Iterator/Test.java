@@ -40,9 +40,10 @@ public class Test {
         }
         iterator = list.listIterator();
         list.set(1, 12); // doesn't corrupt list because pointers valid after set
-        System.out.println("sjafa");
+        //System.out.println("sjafa");
         while (iterator.hasNext()) {
             Integer data = iterator.next();
+            System.err.println("go to next");
             if (data % 2 == 0)
                 iterator.remove();
         }

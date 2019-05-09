@@ -93,6 +93,7 @@ class GenericListIterator<T> implements ListIterator<T> {
     throw new ConcurrentModificationException();
     if(ls == false) throw new IllegalStateException();
     innerList.removeIndex(index);
+    firstSize = innerList.size();
   }
 
   @Override
