@@ -3,6 +3,25 @@ import java.util.ListIterator;
 
 public class Test {
     public static void main(String[] args) {
+
+      GenericLinkedList<Integer> ml = new GenericLinkedList<>();
+      ml.add(0);
+      ml.add(1);
+      ml.add(2);
+      ml.add(3);
+        ListIterator<Integer> it = ml.listIterator();
+      int ii = 0;
+      for (;it.hasNext() ;ii++ ) {
+        System.out.println(ii + " : ");
+        System.out.println(it.next());
+
+      }
+      for (;it.hasPrevious() ;ii-- ) {
+        System.out.println(ii + " : ");
+        System.out.println(it.previous());
+
+      }
+
         GenericLinkedList<Integer> list = new GenericLinkedList<>();
         for (int i = 0; i < 3; i++)
             list.add(i);
@@ -43,7 +62,7 @@ public class Test {
         //System.out.println("sjafa");
         while (iterator.hasNext()) {
             Integer data = iterator.next();
-            System.err.println("go to next");
+            System.err.println("data : "+data);
             if (data % 2 == 0)
                 iterator.remove();
         }

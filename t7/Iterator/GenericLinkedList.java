@@ -12,13 +12,13 @@ enum Operation {
 
 class GenericListIterator<T> implements ListIterator<T> {
   private final GenericLinkedList<T> innerList;
-
+  Operation oper = Operation.None;
   int index;
   int firstSize;
   private boolean ls;
   public GenericListIterator(GenericLinkedList<T> innerList) {
     this.innerList = innerList;
-    index = -1;
+    index = 0;
     firstSize = innerList.size();
     ls = true;
   }
@@ -36,7 +36,7 @@ class GenericListIterator<T> implements ListIterator<T> {
     if (!valid())
     throw new ConcurrentModificationException();
 
-    if (index+1 < innerList.size() ) return true;
+    if (index < innerList.size() ) return true; //TODO
     return false;
   }
 
@@ -45,10 +45,9 @@ class GenericListIterator<T> implements ListIterator<T> {
     if (!valid())
     throw new ConcurrentModificationException();
     if (hasNext() == false)
-    throw new NoSuchElementException();
-    ls = true;
-    index++;
-    Node<T> head = innerList.indexToNode(index);
+      throw new NoSuchElementException();
+    oper = Operation.Next;
+    Node<T> head = innerList.indexToNode(index++);
     return head.value;
   }
 
@@ -67,9 +66,8 @@ class GenericListIterator<T> implements ListIterator<T> {
       throw new ConcurrentModificationException();
     if (hasPrevious() == false)
       throw new NoSuchElementException();
-    ls = true;
-    index--;
-    Node<T> head = innerList.indexToNode(index);
+    oper = Operation.Prev;
+    Node<T> head = innerList.indexToNode(--index);
     return head.value;
   }
 
@@ -77,22 +75,32 @@ class GenericListIterator<T> implements ListIterator<T> {
   public int nextIndex() {
     if (!valid())
     throw new ConcurrentModificationException();
-    return index+1;
+    return index;
   }
 
   @Override
   public int previousIndex() {
     if (!valid())
     throw new ConcurrentModificationException();
-    return index -1;
+    return index-1;
   }
 
   @Override
   public void remove() {
     if (!valid())
     throw new ConcurrentModificationException();
-    if(ls == false) throw new IllegalStateException();
-    innerList.removeIndex(index);
+    switch (oper) {
+          case None:
+            throw new IllegalStateException();
+
+          case Next:
+            innerList.removeIndex(index-1);
+            break;
+          case Prev:
+            innerList.removeIndex(index-1);
+            break;
+    }
+    oper = Operation.None;
     firstSize = innerList.size();
   }
 
