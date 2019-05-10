@@ -1,4 +1,4 @@
-import java.util.Objects;
+import java.util.*;
 
 class Person {
     int rank;
@@ -48,12 +48,19 @@ class Employee extends Person implements Comparable<Boss> {
 }
 
 public class Maximum {
+
+    public static <T extends Comparable<V>,V> T findMax (T...inp){
+      Arrays.sort(inp);
+      return inp[inp.length-1];
+
+    }
     public static void main(String[] args) {
         Integer a = Maximum.findMax(0, 1, 2, 3); // a = 3
+        System.out.println(a);
         Person person1 = new Person(1);
         Person person2 = new Person(2);
         // Compile Error : Person should implements Comparable
-        Maximum.findMax(person1, person2);
+        //Maximum.findMax(person1, person2);
 
         Developer s1 = new Developer(20);
         Developer s2 = new Developer(0);
