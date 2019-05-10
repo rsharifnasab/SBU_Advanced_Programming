@@ -49,7 +49,7 @@ class Employee extends Person implements Comparable<Boss> {
 
 public class Maximum {
 
-    public static <T extends Comparable<V>,V> T findMax (T...inp){
+    public static <T extends Comparable<? super T>> T findMax (T...inp){
       Arrays.sort(inp);
       return inp[inp.length-1];
 
@@ -77,6 +77,6 @@ public class Maximum {
         Employee employee2 = new Employee(2, 20);
         Employee employee3 = new Employee(1, 5);
         // Compile Error : Employee should be compared to Boss only
-        Employee maxEmployee = Maximum.findMax(employee1, employee2, employee3);
+        //Employee maxEmployee = Maximum.findMax(employee1, employee2, employee3);
     }
 }
