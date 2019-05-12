@@ -1,10 +1,14 @@
 import java.util.*;
-class Node{
+class Node implements Comparable<Node>{
   String name;
   List<Node> nexts = new ArrayList<Node>();
   Node before = null;
   public Node(String value){
     name = value;
+  }
+  @Override
+  public int compareTo(Node o){
+    return this.name.compareTo(o.name);
   }
 }
 
@@ -23,6 +27,17 @@ public class Shajare{
       if(name.equals(nodes.get(i).name)) return nodes.get(i);
     }
     return null;
+  }
+  public static void printt(Node toPrint){
+    System.out.print(toPrint.name);
+    if(toPrint.nexts.size()>0){
+      System.out.print("->");
+      Collections.sort(toPrint.nexts);
+      for (Node n: toPrint.nexts ) {
+        System.out.print(n.name+" ");
+      }
+    }
+    System.out.println();
   }
   public static void main(String[] args) {
 
@@ -44,14 +59,16 @@ public class Shajare{
       son.before = father;
     }
     for (Node n : nodes ) {
-      if (n.before == null)System.out.println(" father of fathers,  this : " + n.name);
-      else System.out.println(" father : "+ n.before.name + " this : " + n.name);
+      if (n.before == null)System.err.println("father of fathers,  this : " + n.name);
+      else System.err.println(" father : "+ n.before.name + ", this : " + n.name);
     }
     Node [][] toPrint = new Node[max][max];
-    Node n = nodes.get(0);
-    while(n.before != null) n = n.before; //finad father of fathers
+
+    Node bigFather = nodes.get(0);
+    while(bigFather.before != null) bigFather = bigFather.before; //find father of fathers
+    printt(bigFather);
     for(int i = 1;i<nodes.size();i++){
-      
+
     }
 
 
