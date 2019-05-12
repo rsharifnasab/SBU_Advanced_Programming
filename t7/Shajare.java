@@ -3,20 +3,14 @@ class Node implements Comparable<Node>{
   String name;
   List<Node> nexts = new ArrayList<Node>();
   Node before = null;
-  public Node(String value){
-    name = value;
-  }
+  public Node(String value){name = value; }
   @Override
-  public int compareTo(Node o){
-    return this.name.compareTo(o.name);
-  }
+  public int compareTo(Node o){ return this.name.compareTo(o.name); }
 }
 
 public class Shajare{
-
-  static final Integer max = 110;
   static SortedSet<String> names = new TreeSet<String>();
-  static String[][] db = new String[max][];
+  static String[][] db = new String[110][];
   static Scanner sc = new Scanner(System.in);
   static int n;
   static List<Node> nodes = new ArrayList<Node>();
@@ -41,7 +35,6 @@ public class Shajare{
     System.out.println();
   }
   public static void main(String[] args) {
-
     n = Integer.parseInt(sc.nextLine()); // number of lines
     for (int i = 0;i < n ;i++ ) { // get data from user
       String temp = sc.nextLine();
@@ -63,13 +56,11 @@ public class Shajare{
       if (n.before == null)System.err.println("father of fathers,  this : " + n.name);
       else System.err.println(" father : "+ n.before.name + ", this : " + n.name);
     }
-
     Node bigFather = nodes.get(0);
     while(bigFather.before != null) bigFather = bigFather.before; //find father of fathers
     printNode(bigFather);
     while(toPrint.size()>0){
       printNode(toPrint.remove());
     }
-
   }
 }
