@@ -20,7 +20,7 @@ public class Shajare{
   static Scanner sc = new Scanner(System.in);
   static int n;
   static List<Node> nodes = new ArrayList<Node>();
-
+  static Queue<Node> toPrint = new LinkedList<>();
 
   public static Node name2node(String name){
     for (int i=0;i < nodes.size() ; i++) {
@@ -28,13 +28,14 @@ public class Shajare{
     }
     return null;
   }
-  public static void printt(Node toPrint){
-    System.out.print(toPrint.name);
-    if(toPrint.nexts.size()>0){
+  public static void printNode(Node plsPrint){
+    System.out.print(plsPrint.name);
+    if(plsPrint.nexts.size()>0){
       System.out.print("->");
-      Collections.sort(toPrint.nexts);
-      for (Node n: toPrint.nexts ) {
+      Collections.sort(plsPrint.nexts);
+      for (Node n: plsPrint.nexts ) {
         System.out.print(n.name+" ");
+        toPrint.add(n);
       }
     }
     System.out.println();
@@ -62,15 +63,13 @@ public class Shajare{
       if (n.before == null)System.err.println("father of fathers,  this : " + n.name);
       else System.err.println(" father : "+ n.before.name + ", this : " + n.name);
     }
-    Node [][] toPrint = new Node[max][max];
 
     Node bigFather = nodes.get(0);
     while(bigFather.before != null) bigFather = bigFather.before; //find father of fathers
-    printt(bigFather);
-    for(int i = 1;i<nodes.size();i++){
-
+    printNode(bigFather);
+    while(toPrint.size()>0){
+      printNode(toPrint.remove());
     }
-
 
   }
 }
