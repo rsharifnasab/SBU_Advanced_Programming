@@ -88,7 +88,7 @@ class GenericListIterator<T> implements ListIterator<T> {
     if (!valid())
     throw new ConcurrentModificationException();
 
-    System.out.println("case is"+oper);
+    System.err.println("case is"+oper);
     switch (oper) {
           case None:
             throw new IllegalStateException();
