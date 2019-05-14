@@ -1,6 +1,20 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
+class SortCityInfo implements Comparator<CityInformation>{
+  public int compare(CityInformation a,CityInformation b){
+    int ans = a.getCity().compareTo(b.getCity());
+    //if(ans!=0) return ans;
+    return ans;
+  }
+}
+class SortCityMonthInfo implements Comparator<CityMonthInformation>{
+  public int compare(CityMonthInformation a,CityMonthInformation b){
+    int ans = a.getCity().compareTo(b.getCity());
+    if(ans!=0) return ans;
+    return new Integer(a.getMonth()).compareTo(b.getMonth());
+  }
+}
 public class Report {
 
     private List<Information> listInformation;
@@ -9,14 +23,32 @@ public class Report {
         this.listInformation = listInformation;
     }
 
+    static int info2year(Information info){
+      String [] yearString = info.getDate().split("/") ;
+      return Integer.parseInt(yearString[0]);
+    }
+    static int info2month(Information info){
+      String [] yearString = info.getDate().split("/") ;
+      return Integer.parseInt(yearString[1]);
+    }
+
+
     public List<CityInformation> sumByCity(int year) {
-        // TODO
-        return null;
+      List<CityInformation> ans = new ArrayList<>();
+        for (Information info : listInformation) {
+          if(info2year(info) == year) ans.add(new CityInformation(info.getCity(),info.getAmount()));
+        }
+        Collections.sort(ans,new SortCityInfo());
+        return ans;
     }
 
     public List<CityMonthInformation> sumCityByMonth(int year) {
-        // TODO
-        return null;
+        List<CityMonthInformation> ans = new ArrayList<>();
+        for (Information info : listInformation) {
+          if(info2year(info) == year) ans.add(new CityMonthInformation(info.getCity(),info2month(info),info.getAmount()));
+        }
+        Collections.sort(ans,new SortCityMonthInfo());
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -33,6 +65,8 @@ public class Report {
         System.out.printf("2: %s %d%n", sumKurdistan.getCity(), sumKurdistan.getSum());
         CityInformation sumYazd = sumResults.get(2);
         System.out.printf("2: %s %d%n", sumYazd.getCity(), sumYazd.getSum());
+        sumYazd = sumResults.get(3);
+        System.out.printf("2: %s %d%n", sumYazd.getCity(), sumYazd.getSum());
 
         List<CityMonthInformation> sumMonthResults = service.sumCityByMonth(1394);
         System.out.printf("sum total: %d%n", sumMonthResults.size());
@@ -41,6 +75,8 @@ public class Report {
         CityMonthInformation sumSecond = sumMonthResults.get(1);
         System.out.printf("2: %s %d %d%n", sumSecond.getCity(), sumSecond.getMonth(), sumSecond.getSum());
         CityMonthInformation sumThird = sumMonthResults.get(2);
+        System.out.printf("2: %s %d %d%n", sumThird.getCity(), sumThird.getMonth(), sumThird.getSum());
+        sumThird = sumMonthResults.get(3);
         System.out.printf("2: %s %d %d%n", sumThird.getCity(), sumThird.getMonth(), sumThird.getSum());
     }
 
