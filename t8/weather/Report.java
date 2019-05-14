@@ -56,7 +56,7 @@ public class Report {
         }
         Collections.sort(ans,new SortCityMonthInfo());
         for (int i=ans.size()-1;i>0 ;i-- ) { //TODO
-          if(ans.get(i).getCity().equals(ans.get(i-1).getCity())) {
+          if(ans.get(i).getCity().equals(ans.get(i-1).getCity()) && ans.get(i).getMonth() == ans.get(i-1).getMonth()) {
             ans.get(i-1).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
             ans.remove(i);
             i--;
@@ -79,12 +79,7 @@ public class Report {
         System.out.printf("2: %s %d%n", sumKurdistan.getCity(), sumKurdistan.getSum());
         CityInformation sumYazd = sumResults.get(2);
         System.out.printf("2: %s %d%n", sumYazd.getCity(), sumYazd.getSum());
-        try {
-          sumYazd = sumResults.get(3);
-          System.out.printf("2: %s %d%n", sumYazd.getCity(), sumYazd.getSum());
-        } catch(Exception e) {
-            System.out.println("3 not found");
-        }
+
 
         List<CityMonthInformation> sumMonthResults = service.sumCityByMonth(1394);
         System.out.printf("sum total: %d%n", sumMonthResults.size());
@@ -94,12 +89,7 @@ public class Report {
         System.out.printf("2: %s %d %d%n", sumSecond.getCity(), sumSecond.getMonth(), sumSecond.getSum());
         CityMonthInformation sumThird = sumMonthResults.get(2);
         System.out.printf("2: %s %d %d%n", sumThird.getCity(), sumThird.getMonth(), sumThird.getSum());
-        try{
-          sumThird = sumMonthResults.get(3);
-          System.out.printf("2: %s %d %d%n", sumThird.getCity(), sumThird.getMonth(), sumThird.getSum());
-        }catch(Exception e){
-          System.out.println("3 not found");
-        }
+
     }
 
 }
