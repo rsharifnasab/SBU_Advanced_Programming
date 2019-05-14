@@ -27,6 +27,8 @@ public class Buyer implements Runnable {
             }
         }
 
-        // TODO
+        for (Bid b : bids ) {
+          Thread.sleep(b.getTime());
+        }
     }
 }

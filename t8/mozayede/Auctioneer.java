@@ -20,11 +20,20 @@ public class Auctioneer implements Runnable {
     }
 
     @Override
-    public void run() {
+    public void run() throws InterruptedException{
         synchronized (this) {
             notifyAll(); // notify all buyers to start biding
         }
+        long last = 0;
+        while (true)
+        {
+          long startTime = System.currentTimeMillis();
+          Thread.wait(500-last);
+          last = 0;
+          long endTime = System.currentTimeMillis();
+          if(endTime-startTime >= 500) return;
+          if()
+        }
 
-        // TODO
     }
 }
