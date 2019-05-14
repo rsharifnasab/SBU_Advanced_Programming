@@ -41,8 +41,8 @@ public class Report {
         Collections.sort(ans,new SortCityInfo());
         for (int i=ans.size()-1;i>0 ;i-- ) {
           if(ans.get(i).getCity().equals(ans.get(i-1).getCity())) {
-            ans.get(i-1).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
-            ans.remove(i);
+            ans.get(i).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
+            ans.remove(i-1);
             i--;
           }
         }
