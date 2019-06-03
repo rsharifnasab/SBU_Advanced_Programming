@@ -34,15 +34,19 @@ public class Report {
 
 
     public List<CityInformation> sumByCity(int year) {
+
       List<CityInformation> ans = new ArrayList<>();
-        for (Information info : listInformation) {
-          if(info2year(info) == year) ans.add(new CityInformation(info.getCity(),info.getAmount()));
-        }
-        Collections.sort(ans,new SortCityInfo());
+      Comparator<Information> byName = Comparator.comparing(Information::getCity);
+      listInformation.stream()
+      .filter(a->info2year(a)==year)
+      .sorted(byName)
+      .map(a->new CityInformation(a.getCity(),a.getAmount()))
+      .forEach(a->ans.add(a));
+
         for (int i=ans.size()-1;i>0 ;i-- ) {
           if(ans.get(i).getCity().equals(ans.get(i-1).getCity())) {
-            ans.get(i).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
-            ans.remove(i-1);
+            ans.get(i-1).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
+            ans.remove(i);
             i--;
           }
         }
@@ -51,10 +55,13 @@ public class Report {
 
     public List<CityMonthInformation> sumCityByMonth(int year) {
         List<CityMonthInformation> ans = new ArrayList<>();
-        for (Information info : listInformation) {
-          if(info2year(info) == year) ans.add(new CityMonthInformation(info.getCity(),info2month(info),info.getAmount()));
-        }
-        Collections.sort(ans,new SortCityMonthInfo());
+        Comparator<Information> bynameMonth = Comparator.comparing(Information::getCity).thenComparing(a-> info2month(a));
+        listInformation.stream()
+        .filter(a->info2year(a)==year)
+        .sorted(bynameMonth)
+        .map(a->new CityMonthInformation(a.getCity(),info2month(a),a.getAmount()))
+        .forEach(a->ans.add(a));
+
         for (int i=ans.size()-1;i>0 ;i-- ) { //TODO
           if(ans.get(i).getCity().equals(ans.get(i-1).getCity()) && ans.get(i).getMonth() == ans.get(i-1).getMonth()) {
             ans.get(i-1).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
@@ -79,6 +86,8 @@ public class Report {
         System.out.printf("2: %s %d%n", sumKurdistan.getCity(), sumKurdistan.getSum());
         CityInformation sumYazd = sumResults.get(2);
         System.out.printf("2: %s %d%n", sumYazd.getCity(), sumYazd.getSum());
+        //CityInformation sumtemp = sumResults.get(3);
+        //System.out.printf("2: %s %d%n", sumtemp.getCity(), sumtemp.getSum());
 
 
         List<CityMonthInformation> sumMonthResults = service.sumCityByMonth(1394);
