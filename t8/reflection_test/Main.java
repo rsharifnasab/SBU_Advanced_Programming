@@ -40,7 +40,7 @@ public class Main{
 
   }
 
-  public static void compiler(){
+  public static Scanner compiler(){
       try {
         Runtime rt = Runtime.getRuntime();
         Process pr = rt.exec("javac "+nameCounter+"java");
@@ -54,6 +54,7 @@ public class Main{
         System.out.println("compile error");
         e.printStackTrace();
       }
+      return null;
   }
 
   public static Object instantiate(String address) throws Exception{
@@ -61,7 +62,7 @@ public class Main{
     compiler();
     System.out.println("opning serveer socket");
     try(
-      ServerSocket server = new ServerSocket(1234);
+      ServerSocket server = new ServerSocket(1234);  
       Socket socket = server.accept();
       InputStream sockInp = socket.getInputStream();
       ObjectInputStream objIn = new ObjectInputStream(sockInp);
