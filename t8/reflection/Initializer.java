@@ -24,14 +24,28 @@ public class Initializer {
 						}
 					}
 				}
+					System.out.println("--------");
+				for(Object o: ans){ //every class of input
+					List <Field> fieldsFiltered = new LinkedList<>();
+					Field[] fields = o.getClass().getDeclaredFields();
+					Arrays.stream(fields).filter(a-> a.getAnnotation(Connect.class) != null ).forEach(a->fieldsFiltered.add(a));
+					fieldsFiltered.stream().forEach(a->a.setAccessible(true));
+					System.err.println("going to foreach in fileds");
+					for(Field f :  fieldsFiltered){
+						Class fieldClass = f.getClass();
+						System.err.println("getclass compalete");
+						Object newins = fieldClass.getConstructor().newInstance();
 
-				for(Object o: ans){
-				//	if(ans.getClass().getFiels().stream().map(a->a.getDeclaredAnnotations))
+						System.err.println("new instance complaete");
+						f.set(o,newins);
+					}
+					System.out.println("main: " + o.getClass().getSimpleName());
+					System.out.println("connects to: " + fieldsFiltered);
 				}
 
 		} catch(Exception e) {
 			System.err.println(e.getMessage());
-			//e.printStackTrace();
+			e.printStackTrace();
 			throw new InitializeException();
 		}
 		return ans;
