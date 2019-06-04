@@ -5,47 +5,50 @@ import java.lang.reflect.Field;
 import java.lang.reflect.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import user.*; //TODO
+
 public class Initializer {
 
-	public static Collection<Object> init(List<String> classNames){
+	public static Collection<Object> init(List<String> classNames1){
 		List<Object> ans = new LinkedList<>();
+		List<String>  classNames = classNames1.stream().distinct().collect(java.util.stream.Collectors.toList());
 		try {
 				for (String className : classNames ) {
 					Class cls = Class.forName(className);
-					System.err.println("class name: " + cls.getSimpleName());
+				//	System.err.println("class name: " + cls.getSimpleName());
 					for (Object a : cls.getDeclaredAnnotations() ) {
 						if(a.toString().equals("@annotation.Instantiate()")) {
 							Object testObject = cls.getConstructor().newInstance();
-							System.out.println("adding.. "+testObject);
+							//System.out.println("adding.. "+testObject);
 							ans.add( testObject );
 
 							break;
 						}
 					}
 				}
-					System.out.println("--------");
+					//System.out.println("--------");
 				for(Object o: ans){ //every class of input
 					List <Field> fieldsFiltered = new LinkedList<>();
 					Field[] fields = o.getClass().getDeclaredFields();
 					Arrays.stream(fields).filter(a-> a.getAnnotation(Connect.class) != null ).forEach(a->fieldsFiltered.add(a));
 					fieldsFiltered.stream().forEach(a->a.setAccessible(true));
-					System.err.println("going to foreach in fileds");
+					//System.err.println("going to foreach in fileds");
 					for(Field f :  fieldsFiltered){
-						Class fieldClass = f.getClass();
-						System.err.println("getclass compalete");
-						Object newins = fieldClass.getConstructor().newInstance();
+						Class fieldClass = f.getType();
+						Object newins = null;
+						for(Object o2:ans){
+							if (o2.getClass().equals(fieldClass) ) newins = o2;
+						}
+						//System.out.println("filed class type:"+fieldClass.getSimpleName());
 
-						System.err.println("new instance complaete");
+						if (newins == null ) throw new InitializeException();
+						//System.err.println("new instance complaete");
 						f.set(o,newins);
 					}
-					System.out.println("main: " + o.getClass().getSimpleName());
-					System.out.println("connects to: " + fieldsFiltered);
+					//System.out.println("main: " + o.getClass().getSimpleName());
+					//System.out.println("connects to: " + fieldsFiltered);
 				}
 
 		} catch(Exception e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
 			throw new InitializeException();
 		}
 		return ans;
@@ -57,16 +60,18 @@ public class Initializer {
             Arrays.asList("user.Manager", "user.Service", "user.Developer"));
 		System.out.println(objects.size());
 		 for (Object obj : objects) {
-        if (obj instanceof Manager) {
+        if (obj instanceof user.Manager) {
             // there is a "Connect" annotation for Manager.developer
 						System.out.println("obj is:"+obj);
-            System.out.println(((Manager) obj).getDeveloper()!=null);
-        } else if (obj instanceof Service) {
+            System.out.println(((user.Manager) obj).getDeveloper()!=null);
+        } else if (obj instanceof user.Service) {
             // there is a "Connect" annotation for Service.manager
             // TODO assertNotNull(((Service) obj).getManager());
+						System.out.println( ((user.Service) obj).getManager() != null);
             // there is no "Connect" annotation for Service.employee
             //TODO assertNull(((Service) obj).getEmployee());
-        } else if (obj instanceof Developer) {
+						System.out.println(((user.Service) obj).getEmployee()==null);
+        } else if (obj instanceof user.Developer) {
             // an instance of Developer is created!
         } else {
             // anything else should fail
