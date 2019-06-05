@@ -40,7 +40,7 @@ public class Initializer {
 						}
 						//System.out.println("filed class type:"+fieldClass.getSimpleName());
 
-						if (newins == null ) throw new InitializeException();
+						//if (newins == null ) throw new InitializeException();
 						//System.err.println("new instance complaete");
 						f.set(o,newins);
 					}
@@ -49,6 +49,7 @@ public class Initializer {
 				}
 
 		} catch(Exception e) {
+			
 			throw new InitializeException();
 		}
 		return ans;
@@ -56,6 +57,18 @@ public class Initializer {
 	public static void main(String[] args) {
 		//user.Developer a = new user.Developer();
 		//user.Service b = new user.Service();
+		String s = new java.lang.String();
+		Collection<Object> test = Initializer.init(
+			Arrays.asList(
+				"user.Employee","user.Manager"
+			)
+		);
+		System.out.println(test.size());
+		for (Object o : test ) {
+			System.out.println(  ( (user.Manager)o).getDeveloper() );
+		}
+		System.out.println("- -- - ------");
+
 		Collection<Object> objects = Initializer.init(
             Arrays.asList("user.Manager", "user.Service", "user.Developer"));
 		System.out.println(objects.size());
