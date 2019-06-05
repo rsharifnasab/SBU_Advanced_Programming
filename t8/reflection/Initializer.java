@@ -9,17 +9,59 @@ import java.util.*;
 public class Initializer {
 
 	public static Collection<Object> init(List<String> classNames){
-		Collection<Object> ans = new HashSet<>();
+		Collection<Object> collection = new LinkedHashSet<>();
+		for (String name : classNames){
+			try {
+				Class c = Class.forName(name);
+				for(Object an : c.getDeclaredAnnotations() ){ //TODO
+					if (an instanceof Instantiate){
+						Constructor constructor = c.getDeclaredConstructor();
+						collection.add(constructor.newInstance());
+						break;
+					}
+				}
+			} catch(Exception e) {
+					throw new InitializeException();
+			}
+		}
+		for (Object obj : collection){
+			try{
+				Field[] fields = obj.getClass().getDeclaredFields();
+				for(Field field : fields){
+					for(Object annotation : field.getDeclaredAnnotations()){ //TODO
+						if(annotation instanceof Connect){
+							field.setAccessible(true);
+							boolean exists = false;
+							for(Object instance : collection){
+								if(field.getType().equals(instance.getClass())){
+									field.set(obj,instance);
+									exists = true;
+									break;
+								}
+							}
+							field.setAccessible(false);
+							if(!exists){
+								throw new InitializeException();
+							}
+						}
+					}
+				}
+			}
+			catch(Exception e){
+				throw new InitializeException();
+			}
+		}
+		return collection;
+	}
+		//-----------
+/*
 		try {
 				for (String className : classNames ) {
 					Class cls = Class.forName(className);
-				//	System.err.println("class name: " + cls.getSimpleName());
 					for (Object a : cls.getDeclaredAnnotations() ) {
 						if(a instanceof Instantiate) {
 							Object testObject = cls.getConstructor().newInstance();
-							//System.out.println("adding.. "+testObject);
 							ans.add( testObject );
-
 							break;
 						}
 					}
@@ -68,33 +110,6 @@ public class Initializer {
 		}
 		return ans;
 	}
-	public static void main(String[] args) {
-		//user.Developer a = new user.Developer();
-		//user.Service b = new user.Service();
-
-
-		Collection<Object> objects = Initializer.init(
-            Arrays.asList("user.Manager", "user.Service", "user.Developer"));
-		System.out.println(objects.size());
-		 for (Object obj : objects) {
-        if (obj instanceof user.Manager) {
-            // there is a "Connect" annotation for Manager.developer
-						System.out.println("obj is:"+obj);
-            System.out.println(((user.Manager) obj).getDeveloper()!=null);
-        } else if (obj instanceof user.Service) {
-            // there is a "Connect" annotation for Service.manager
-            // TODO assertNotNull(((Service) obj).getManager());
-						System.out.println( ((user.Service) obj).getManager() != null);
-            // there is no "Connect" annotation for Service.employee
-            //TODO assertNull(((Service) obj).getEmployee());
-						System.out.println(((user.Service) obj).getEmployee()==null);
-        } else if (obj instanceof user.Developer) {
-            // an instance of Developer is created!
-        } else {
-            // anything else should fail
-            System.out.println("fail");
-        }
-			}
-	}
+		*/
 
 }
