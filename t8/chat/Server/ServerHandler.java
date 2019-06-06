@@ -38,7 +38,6 @@ public class ServerHandler {
       return -1;
     }
     void connect(Message message) throws IOException{
-      System.err.println("it seems " + message + " connectd");
       User newUser = new User(message.getSender(),inputStream,outputStream);
 
       Message respond = new Message(MessageType.Connect,message.getSender(),message.getReceiver(),"");
@@ -46,22 +45,16 @@ public class ServerHandler {
         u.getOutputStream().writeObject(respond);
       }
       userList.add(newUser);
-      System.out.println(newUser + " added to list");
-
     }
 
     void error(Message message) throws IOException{
-      System.err.println(" error");
       Message respond = new Message(MessageType.Error,message.getReceiver(),message.getSender(),"error");
       User target = userList.get(OnlineCheck(message.getSender()));
       target.getOutputStream().writeObject(respond);
     }
     void text(Message message) throws IOException{
-      System.err.println(" it seems teeexxtt " + message + " recived");
       if (OnlineCheck(message.getReceiver()) == -1){
         error(message);
-        System.err.println("error found");
-        System.err.flush();
         return;
       }
       Message respond = new Message(MessageType.Text,message.getSender(),message.getReceiver(),message.getMessageText());
@@ -87,7 +80,6 @@ public class ServerHandler {
               break;
             case Disconnect:
                 disconnect(message);
-                // TODO
                 break;
             case Text:
                 text(message);

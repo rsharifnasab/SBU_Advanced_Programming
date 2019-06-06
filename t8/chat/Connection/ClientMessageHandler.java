@@ -9,7 +9,7 @@ public class ClientMessageHandler {
         String respond = "";
         switch (message.getMessageType()) {
             case Connect:
-                System.out.println("anser from server");
+                
                 respond = message.getSender() + " connected";
                 break;
             case Disconnect:
