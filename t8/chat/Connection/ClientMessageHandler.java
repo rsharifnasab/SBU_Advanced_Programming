@@ -9,18 +9,20 @@ public class ClientMessageHandler {
         String respond = "";
         switch (message.getMessageType()) {
             case Connect:
-                // TODO
+                System.out.println("anser from server");
+                respond = message.getSender() + " connected";
                 break;
             case Disconnect:
                 // TODO
                 break;
             case Text:
-                // TODO
+                respond = message.getSender() + ":" + message.getMessageText();
                 break;
             case Error:
                 // TODO
                 break;
         }
+
         return respond;
     }
 }
