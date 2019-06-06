@@ -58,13 +58,26 @@ public class ServerHandler {
     }
     void text(Message message) throws IOException{
       System.err.println(" it seems teeexxtt " + message + " recived");
-      if (OnlineCheck(message.getSender()) == -1){
+      if (OnlineCheck(message.getReceiver()) == -1){
         error(message);
+        System.err.println("error found");
+        System.err.flush();
         return;
       }
       Message respond = new Message(MessageType.Text,message.getSender(),message.getReceiver(),message.getMessageText());
       User target = userList.get(OnlineCheck(message.getReceiver()));
       target.getOutputStream().writeObject(respond);
+    }
+
+    void disconnect(Message message) throws IOException{
+      int userIndex = OnlineCheck(message.getSender());
+      if (userIndex == -1 ) return;
+      User dc = userList.get(userIndex);
+      userList.remove(userIndex);
+      Message respond = new Message(MessageType.Disconnect,message.getSender(),message.getReceiver(),"");
+      for (User u : userList) {
+        u.getOutputStream().writeObject(respond);
+      }
     }
 
     void handle(Message message) throws IOException {
@@ -73,6 +86,7 @@ public class ServerHandler {
               connect(message);
               break;
             case Disconnect:
+                disconnect(message);
                 // TODO
                 break;
             case Text:

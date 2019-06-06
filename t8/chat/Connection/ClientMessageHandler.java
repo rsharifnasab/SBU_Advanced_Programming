@@ -13,13 +13,13 @@ public class ClientMessageHandler {
                 respond = message.getSender() + " connected";
                 break;
             case Disconnect:
-                // TODO
+                respond = message.getSender() + " disconnected";
                 break;
             case Text:
                 respond = message.getSender() + ":" + message.getMessageText();
                 break;
             case Error:
-                // TODO
+                respond = message.getSender() + " doesn't exist";
                 break;
         }
 
