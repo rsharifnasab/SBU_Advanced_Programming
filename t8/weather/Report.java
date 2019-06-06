@@ -1,20 +1,6 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
-class SortCityInfo implements Comparator<CityInformation>{
-  public int compare(CityInformation a,CityInformation b){
-    int ans = a.getCity().compareTo(b.getCity());
-    //if(ans!=0) return ans;
-    return ans;
-  }
-}
-class SortCityMonthInfo implements Comparator<CityMonthInformation>{
-  public int compare(CityMonthInformation a,CityMonthInformation b){
-    int ans = a.getCity().compareTo(b.getCity());
-    if(ans!=0) return ans;
-    return new Integer(a.getMonth()).compareTo(b.getMonth());
-  }
-}
 public class Report {
 
     private List<Information> listInformation;
@@ -27,30 +13,44 @@ public class Report {
       String [] yearString = info.getDate().split("/") ;
       return Integer.parseInt(yearString[0]);
     }
+
     static int info2month(Information info){
       String [] yearString = info.getDate().split("/") ;
       return Integer.parseInt(yearString[1]);
     }
 
+    public CityInformation merge(CityInformation a,CityInformation b){
+        return new CityInformation( a.getCity() , a.getSum()+b.getSum() );
+    }
 
     public List<CityInformation> sumByCity(int year) {
 
       List<CityInformation> ans = new ArrayList<>();
       Comparator<Information> byName = Comparator.comparing(Information::getCity);
-      listInformation.stream()
+      listInformation
+      .stream()
       .filter(a->info2year(a)==year)
       .sorted(byName)
       .map(a->new CityInformation(a.getCity(),a.getAmount()))
       .forEach(a->ans.add(a));
-
-        for (int i=ans.size()-1;i>0 ;i-- ) {
-          if(ans.get(i).getCity().equals(ans.get(i-1).getCity())) {
-            ans.get(i-1).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
-            ans.remove(i);
-            i--;
-          }
+      List<CityInformation> ans2 = new LinkedList<>();
+      ans2.add(ans.get(0));
+      for (int i = 1; i < ans.size(); i++){
+        if(ans.get(i).getCity().equals(ans2.get(ans2.size() -1 ).getCity())){
+          ans2.set(ans2.size()-1 , merge(ans.get(i) , ans2.get(ans2.size()-1) ) );
         }
-        return ans;
+        else ans2.add(ans.get(i));
+      }
+      /*
+      for (int i=ans.size()-1;i>0 ;i-- ) {
+        if(ans.get(i).getCity().equals(ans.get(i-1).getCity())) {
+          ans.get(i-1).setSum(ans.get(i).getSum()+ans.get(i-1).getSum());
+          ans.remove(i);
+          i--;
+        }
+      }
+      */
+        return ans2;
     }
 
     public List<CityMonthInformation> sumCityByMonth(int year) {
