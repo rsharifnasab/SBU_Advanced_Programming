@@ -30,6 +30,7 @@ public class Report {
       listInformation
       .stream()
       .filter(a->info2year(a)==year)
+      .filter(a-> a.getAmount() > 0)
       .sorted(byName)
       .map(a->new CityInformation(a.getCity(),a.getAmount()))
       .forEach(a->ans.add(a));
@@ -58,6 +59,7 @@ public class Report {
         Comparator<Information> bynameMonth = Comparator.comparing(Information::getCity).thenComparing(a-> info2month(a));
         listInformation.stream()
         .filter(a->info2year(a)==year)
+        .filter(a-> a.getAmount() > 0)
         .sorted(bynameMonth)
         .map(a->new CityMonthInformation(a.getCity(),info2month(a),a.getAmount()))
         .forEach(a->ans.add(a));
